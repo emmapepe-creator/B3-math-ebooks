@@ -294,6 +294,95 @@
       background: #fff !important;
     }
   }
+
+  /* Mathematical Typesetting & Typography */
+  .math-term, sup, sub, .frac {
+    font-family: "Times New Roman", "Cambria Math", serif;
+  }
+  sup {
+    font-size: 0.72em;
+    vertical-align: 0.42em;
+    line-height: 0;
+  }
+  sub {
+    font-size: 0.72em;
+    vertical-align: -0.25em;
+    line-height: 0;
+  }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: -0.42em;
+    text-align: center;
+    padding: 0 2px;
+    font-size: 0.88em;
+    line-height: 1;
+  }
+  .frac .num {
+    border-bottom: 1.2px solid currentColor;
+    padding: 0 2px 1px 2px;
+    display: block;
+  }
+  .frac .denom {
+    padding: 1px 2px 0 2px;
+    display: block;
+  }
+  /* Long Division Table */
+  .long-div-table {
+    display: inline-table;
+    border-collapse: collapse;
+    font-family: "Times New Roman", serif;
+    font-size: 13pt;
+    line-height: 1.35;
+    margin: 4px 0;
+    vertical-align: middle;
+  }
+  .long-div-table td {
+    padding: 1px 5px;
+    white-space: nowrap;
+  }
+  .ld-quotient {
+    border-bottom: 2px solid #2d3748;
+    font-weight: bold;
+    text-align: left;
+  }
+  .ld-divisor {
+    text-align: right;
+    padding-right: 6px;
+  }
+  .ld-dividend {
+    border-left: 2px solid #2d3748;
+    border-top-left-radius: 4px;
+    padding-left: 8px;
+    text-align: left;
+  }
+  .ld-sub {
+    border-bottom: 1.5px solid #718096;
+    text-align: left;
+  }
+  .ld-rem {
+    text-align: right;
+    font-weight: bold;
+    color: #c53030;
+  }
+  .ld-step {
+    text-align: left;
+  }
+  /* Vertical Multiplication Table */
+  .vert-mult-table {
+    display: inline-table;
+    border-collapse: collapse;
+    font-family: "Times New Roman", serif;
+    font-size: 13pt;
+    line-height: 1.35;
+    margin: 4px 0;
+    text-align: right;
+  }
+  .vert-mult-table td {
+    padding: 1px 4px;
+    white-space: nowrap;
+  }
+
 </style>
 </head>
 <body>
@@ -335,14 +424,14 @@
   <div class="box-note">
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div style="flex:1; padding-right:15px;">
-        <p>❶ 買 3 顆蘋果每顆 $x$ 元，加上一罐飲料 18 元 $\implies$ 總金額：<span class="ans-reveal"><span class="ans-text">3x + 18</span></span> 元</p>
-        <p>❷ 面積拼貼：3 個 $x^2$、2 個 $x$、4 個 1 $\implies$ 總面積：<span class="ans-reveal"><span class="ans-text">3x^2 + 2x + 4</span></span></p>
+        <p>❶ 買 3 顆蘋果每顆 x 元，加上一罐飲料 18 元 ⇒ 總金額：<span class="ans-reveal"><span class="ans-text">3x + 18</span></span> 元</p>
+        <p>❷ 面積拼貼：3 個 x<sup>2</sup>、2 個 x、4 個 1 ⇒ 總面積：<span class="ans-reveal"><span class="ans-text">3x<sup>2</sup> + 2x + 4</span></span></p>
         <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
-          像 $3x+18$、$x^2+2x+4$ 這些由數和文字符號進行<strong>加法和乘法運算</strong>所構成的式子稱為 <strong><span class="ans-reveal"><span class="ans-text">多項式</span></span></strong>。
+          像 3x+18、x<sup>2</sup>+2x+4 這些由數和文字符號進行<strong>加法和乘法運算</strong>所構成的式子稱為 <strong><span class="ans-reveal"><span class="ans-text">多項式</span></span></strong>。
         </div>
         <div style="margin-top:6px; font-size:12pt; line-height:1.8;">
-          ☆ ❶ $2x-5$ 是不是多項式？<span class="ans-reveal"><span class="ans-text">是</span></span><br>
-          ☆ ❷ $\frac{1}{x+2}$、$|x|-3$ 是不是多項式？<span class="ans-reveal"><span class="ans-text">不是（未知數不可在分母或絕對值中）</span></span>
+          ☆ ❶ 2x-5 是不是多項式？<span class="ans-reveal"><span class="ans-text">是</span></span><br>
+          ☆ ❷ <span class="frac"><span class="num">1</span><span class="denom">x+2</span></span>、|x|-3 是不是多項式？<span class="ans-reveal"><span class="ans-text">不是（未知數不可在分母或絕對值中）</span></span>
         </div>
       </div>
       <div style="width:230px; text-align:center;">
@@ -386,18 +475,18 @@
   <div class="grid-2">
     <!-- 題 1-2 -->
     <div class="card">
-      <p><strong>1. 下列各項中哪些是 $x$ 的多項式？</strong></p>
+      <p><strong>1. 下列各項中哪些是 x 的多項式？</strong></p>
       <div style="margin:2px 0; font-size:11pt; color:#4a5568; line-height:1.6;">
-        (A) $\frac{3}{x}$ &nbsp; (B) $|5x+4|$ &nbsp; (C) $4x+3$<br>
-        (D) $-2$ &nbsp; (E) $-5x-7$ &nbsp; (F) $\frac{1}{2}$<br>
-        (G) $x^2+3x$ &nbsp; (H) $x+3=0$ &nbsp; (I) $x^2$
+        (A) <span class="frac"><span class="num">3</span><span class="denom">x</span></span> &nbsp; (B) |5x+4| &nbsp; (C) 4x+3<br>
+        (D) -2 &nbsp; (E) -5x-7 &nbsp; (F) <span class="frac"><span class="num">1</span><span class="denom">2</span></span><br>
+        (G) x<sup>2</sup>+3x &nbsp; (H) x+3=0 &nbsp; (I) x<sup>2</sup>
       </div>
       <p>答：<span class="ans-reveal"><span class="ans-text">(C), (D), (E), (F), (G), (I)</span></span></p>
       
-      <p style="margin-top:6px;"><strong>2. 下列各項中哪些是 $x$ 的多項式？</strong></p>
+      <p style="margin-top:6px;"><strong>2. 下列各項中哪些是 x 的多項式？</strong></p>
       <div style="margin:2px 0; font-size:11pt; color:#4a5568; line-height:1.6;">
-        (A) $x+\frac{2}{x}$ &nbsp; (B) $0.3$ &nbsp; (C) $x=4$<br>
-        (D) $\frac{1}{3}x^2+5$ &nbsp; (E) $0$ &nbsp; (F) $\frac{1}{2}x-5$
+        (A) x+<span class="frac"><span class="num">2</span><span class="denom">x</span></span> &nbsp; (B) 0.3 &nbsp; (C) x=4<br>
+        (D) <span class="frac"><span class="num">1</span><span class="denom">3</span></span>x<sup>2</sup>+5 &nbsp; (E) 0 &nbsp; (F) <span class="frac"><span class="num">1</span><span class="denom">2</span></span>x-5
       </div>
       <p>答：<span class="ans-reveal"><span class="ans-text">(B), (D), (E), (F)</span></span></p>
     </div>
@@ -406,14 +495,14 @@
     <div class="card">
       <p><strong>3. 寫出下列各題的總面積：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $x^2$ 1個、$x$ 3個、1 2個：</strong><br>
-        總面積 ＝ <span class="ans-reveal"><span class="ans-text">x^2 + 3x + 2</span></span></p>
+        <p><strong>(1) x<sup>2</sup> 1個、x 3個、1 2個：</strong><br>
+        總面積 ＝ <span class="ans-reveal"><span class="ans-text">x<sup>2</sup> + 3x + 2</span></span></p>
         
-        <p><strong>(2) $x^2$ 2個、$x$ 3個、1 1個：</strong><br>
-        總面積 ＝ <span class="ans-reveal"><span class="ans-text">2x^2 + 3x + 1</span></span></p>
+        <p><strong>(2) x<sup>2</sup> 2個、x 3個、1 1個：</strong><br>
+        總面積 ＝ <span class="ans-reveal"><span class="ans-text">2x<sup>2</sup> + 3x + 1</span></span></p>
         
-        <p><strong>(3) $x^2$ 4個、$x$ 6個、1 2個：</strong><br>
-        總面積 ＝ <span class="ans-reveal"><span class="ans-text">4x^2 + 6x + 2</span></span></p>
+        <p><strong>(3) x<sup>2</sup> 4個、x 6個、1 2個：</strong><br>
+        總面積 ＝ <span class="ans-reveal"><span class="ans-text">4x<sup>2</sup> + 6x + 2</span></span></p>
       </div>
     </div>
   </div>
@@ -433,10 +522,10 @@
   </div>
 
   <div class="box-note">
-    <p>❶ 在多項式 $3x^2+2x+4$ 中，用加號 $(+)$ 所隔開的每一部分：<span class="ans-reveal"><span class="ans-text">3x^2, 2x, 4</span></span> 都稱為這個多項式的 <strong><span class="ans-reveal"><span class="ans-text">項</span></span></strong>。</p>
-    <p>❷ $3x^2$ 稱為 <span class="ans-reveal"><span class="ans-text">二次項</span></span>，3 是 <span class="ans-reveal"><span class="ans-text">二次項係數</span></span>；$2x$ 稱為 <span class="ans-reveal"><span class="ans-text">一次項</span></span>，2 是 <span class="ans-reveal"><span class="ans-text">一次項係數</span></span>；$4$ 稱為 <span class="ans-reveal"><span class="ans-text">常數項</span></span>。</p>
-    <p>❸ $3x^2+2x+4$ 最高次方的項是 <span class="ans-reveal"><span class="ans-text">3x^2</span></span>，我們說它是 <span class="ans-reveal"><span class="ans-text">二次</span></span> 多項式（或 <span class="ans-reveal"><span class="ans-text">二次三項式</span></span>）。</p>
-    <p>❹ $2x-5$ 有 <span class="ans-reveal"><span class="ans-text">2</span></span> 項。</p>
+    <p>❶ 在多項式 3x<sup>2</sup>+2x+4 中，用加號 (+) 所隔開的每一部分：<span class="ans-reveal"><span class="ans-text">3x<sup>2</sup>, 2x, 4</span></span> 都稱為這個多項式的 <strong><span class="ans-reveal"><span class="ans-text">項</span></span></strong>。</p>
+    <p>❷ 3x<sup>2</sup> 稱為 <span class="ans-reveal"><span class="ans-text">二次項</span></span>，3 是 <span class="ans-reveal"><span class="ans-text">二次項係數</span></span>；2x 稱為 <span class="ans-reveal"><span class="ans-text">一次項</span></span>，2 是 <span class="ans-reveal"><span class="ans-text">一次項係數</span></span>；4 稱為 <span class="ans-reveal"><span class="ans-text">常數項</span></span>。</p>
+    <p>❸ 3x<sup>2</sup>+2x+4 最高次方的項是 <span class="ans-reveal"><span class="ans-text">3x<sup>2</sup></span></span>，我們說它是 <span class="ans-reveal"><span class="ans-text">二次</span></span> 多項式（或 <span class="ans-reveal"><span class="ans-text">二次三項式</span></span>）。</p>
+    <p>❹ 2x-5 有 <span class="ans-reveal"><span class="ans-text">2</span></span> 項。</p>
   </div>
 
   <div class="quiz-header">
@@ -446,15 +535,15 @@
   <div class="grid-2">
     <!-- 題 1-3 -->
     <div class="card">
-      <p><strong>1. 多項式 $2x^2+3x+4$：</strong><br>
+      <p><strong>1. 多項式 2x<sup>2</sup>+3x+4：</strong><br>
       (1) 是 <span class="ans-reveal"><span class="ans-text">二</span></span> 次多項式，有 <span class="ans-reveal"><span class="ans-text">3</span></span> 項。<br>
       (2) 二次項係數為 <span class="ans-reveal"><span class="ans-text">2</span></span>；一次項係數為 <span class="ans-reveal"><span class="ans-text">3</span></span>；常數項為 <span class="ans-reveal"><span class="ans-text">4</span></span>。</p>
       
-      <p style="margin-top:6px;"><strong>2. 多項式 $6x^2-5x+\frac{3}{2}$：</strong><br>
+      <p style="margin-top:6px;"><strong>2. 多項式 6x<sup>2</sup>-5x+<span class="frac"><span class="num">3</span><span class="denom">2</span></span>：</strong><br>
       (1) 是 <span class="ans-reveal"><span class="ans-text">二</span></span> 次多項式，有 <span class="ans-reveal"><span class="ans-text">3</span></span> 項。<br>
       (2) 二次項係數為 <span class="ans-reveal"><span class="ans-text">6</span></span>；一次項係數為 <span class="ans-reveal"><span class="ans-text">-5</span></span>；常數項為 <span class="ans-reveal"><span class="ans-text">3/2</span></span>。</p>
       
-      <p style="margin-top:6px;"><strong>3. 多項式 $3x^2-4$：</strong><br>
+      <p style="margin-top:6px;"><strong>3. 多項式 3x<sup>2</sup>-4：</strong><br>
       (1) 是 <span class="ans-reveal"><span class="ans-text">二</span></span> 次多項式，有 <span class="ans-reveal"><span class="ans-text">2</span></span> 項。<br>
       (2) 二次項係數為 <span class="ans-reveal"><span class="ans-text">3</span></span>；常數項為 <span class="ans-reveal"><span class="ans-text">-4</span></span>。</p>
     </div>
@@ -471,35 +560,35 @@
           <th style="padding:3px;">常數項</th>
         </tr>
         <tr style="border:1px solid #cbd5e0;">
-          <td>$-2x+1$</td>
+          <td>-2x+1</td>
           <td><span class="ans-reveal"><span class="ans-text">1</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">0</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">-2</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">1</span></span></td>
         </tr>
         <tr style="border:1px solid #cbd5e0;">
-          <td>$4x^2-6$</td>
+          <td>4x<sup>2</sup>-6</td>
           <td><span class="ans-reveal"><span class="ans-text">2</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">4</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">0</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">-6</span></span></td>
         </tr>
         <tr style="border:1px solid #cbd5e0;">
-          <td>$2x^2-x+3$</td>
+          <td>2x<sup>2</sup>-x+3</td>
           <td><span class="ans-reveal"><span class="ans-text">2</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">2</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">-1</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">3</span></span></td>
         </tr>
         <tr style="border:1px solid #cbd5e0;">
-          <td>$\frac{2}{3}x^2-x$</td>
+          <td><span class="frac"><span class="num">2</span><span class="denom">3</span></span>x<sup>2</sup>-x</td>
           <td><span class="ans-reveal"><span class="ans-text">2</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">2/3</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">-1</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">0</span></span></td>
         </tr>
         <tr style="border:1px solid #cbd5e0;">
-          <td>$3$</td>
+          <td>3</td>
           <td><span class="ans-reveal"><span class="ans-text">0</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">0</span></span></td>
           <td><span class="ans-reveal"><span class="ans-text">0</span></span></td>
@@ -525,9 +614,9 @@
 
   <div class="box-note">
     <p>❶ <strong>單項式</strong>：如果一個多項式只有單獨一項，稱為 <strong><span class="ans-reveal"><span class="ans-text">單項式</span></span></strong>。<br>
-    &lt;例如&gt; $3x^2$、$-x$、$5$ 都是單項式。</p>
+    &lt;例如&gt; 3x<sup>2</sup>、-x、5 都是單項式。</p>
     <p>❷ <strong>常數多項式</strong>：如果一個多項式只有數字（不含文字符號），稱為 <strong><span class="ans-reveal"><span class="ans-text">常數多項式</span></span></strong>。<br>
-    &lt;例如&gt; $5$、$-1.2$、$0$ 都是常數多項式。（非零常數次數為 0；$0$ 稱為零多項式，不定義次數）。</p>
+    &lt;例如&gt; 5、-1.2、0 都是常數多項式。（非零常數次數為 0；0 稱為零多項式，不定義次數）。</p>
     <div class="side-note" style="margin-top:4px;">☆ 筆記：單項式是多項式的一種嗎？（是！多項式包含單項式）</div>
   </div>
 
@@ -538,13 +627,13 @@
   <div class="grid-2">
     <!-- 題 1-2 -->
     <div class="card">
-      <p><strong>1. (A) $2x^2+x+1$ &nbsp; (B) $-x$ &nbsp; (C) $\frac{3}{2}x^2$ &nbsp; (D) $5$ &nbsp; (E) $-1.2$ &nbsp; (F) $0.5x$ &nbsp; (G) $x=5$</strong></p>
+      <p><strong>1. (A) 2x<sup>2</sup>+x+1 &nbsp; (B) -x &nbsp; (C) <span class="frac"><span class="num">3</span><span class="denom">2</span></span>x<sup>2</sup> &nbsp; (D) 5 &nbsp; (E) -1.2 &nbsp; (F) 0.5x &nbsp; (G) x=5</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
         (1) 單項式：<span class="ans-reveal"><span class="ans-text">(B), (C), (D), (E), (F)</span></span><br>
         (2) 常數多項式：<span class="ans-reveal"><span class="ans-text">(D), (E)</span></span>
       </div>
       
-      <p style="margin-top:6px;"><strong>2. (A) $x^2-2x=3$ &nbsp; (B) $\frac{3}{5}x$ &nbsp; (C) $|x|$ &nbsp; (D) $-\frac{11}{4}$ &nbsp; (E) $x^2$ &nbsp; (F) $0$ &nbsp; (G) $x^2-1$ &nbsp; (H) $2x+3$</strong></p>
+      <p style="margin-top:6px;"><strong>2. (A) x<sup>2</sup>-2x=3 &nbsp; (B) <span class="frac"><span class="num">3</span><span class="denom">5</span></span>x &nbsp; (C) |x| &nbsp; (D) -<span class="frac"><span class="num">11</span><span class="denom">4</span></span> &nbsp; (E) x<sup>2</sup> &nbsp; (F) 0 &nbsp; (G) x<sup>2</sup>-1 &nbsp; (H) 2x+3</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
         (1) 單項式：<span class="ans-reveal"><span class="ans-text">(B), (D), (E), (F)</span></span><br>
         (2) 常數多項式：<span class="ans-reveal"><span class="ans-text">(D), (F)</span></span>
@@ -554,9 +643,9 @@
     <!-- 題 3 -->
     <div class="card">
       <p><strong>3. 已知六個多項式：</strong><br>
-      (A) $x^3-x^2+1$ &nbsp; (B) $x^2-4x+5$<br>
-      (C) $2x-3$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (D) $x$<br>
-      (E) $-1$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (F) $0$</p>
+      (A) x<sup>3</sup>-x<sup>2</sup>+1 &nbsp; (B) x<sup>2</sup>-4x+5<br>
+      (C) 2x-3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (D) x<br>
+      (E) -1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (F) 0</p>
       <div style="margin:6px 0; line-height:2;">
         (1) 哪些是單項式？<br>
         答：<span class="ans-reveal"><span class="ans-text">(D), (E), (F)</span></span><br>
@@ -582,16 +671,16 @@
   </div>
 
   <div class="box-note">
-    <p>若多項式 $(a-1)x^2 + (b+2)x + 5$ 是一個常數多項式，則 $a=?\; b=?$</p>
+    <p>若多項式 (a-1)x<sup>2</sup> + (b+2)x + 5 是一個常數多項式，則 a=?  b=?</p>
     <div class="step-box">
       <div class="step-line ans-reveal">
-        <span class="step-num">步驟 ❶</span> 既是常數多項式，表示沒有 $x^2$ 與 $x$ 的項（係數必為 0）。
+        <span class="step-num">步驟 ❶</span> 既是常數多項式，表示沒有 x<sup>2</sup> 與 x 的項（係數必為 0）。
       </div>
       <div class="step-line ans-reveal">
-        <span class="step-num">步驟 ❷</span> 二次項係數：$a - 1 = 0 \implies $ <span class="ans-text">a = 1</span>
+        <span class="step-num">步驟 ❷</span> 二次項係數：a - 1 = 0 ⇒  <span class="ans-text">a = 1</span>
       </div>
       <div class="step-line ans-reveal">
-        <span class="step-num">步驟 ❸</span> 一次項係數：$b + 2 = 0 \implies $ <span class="ans-text">b = -2</span>
+        <span class="step-num">步驟 ❸</span> 一次項係數：b + 2 = 0 ⇒  <span class="ans-text">b = -2</span>
       </div>
     </div>
   </div>
@@ -604,8 +693,8 @@
     <!-- 題 1 -->
     <div class="card">
       <p><strong>1. 下列多項式中（請填代號）：</strong><br>
-      (A) $3x^2-5x+1$ &nbsp; (B) $4x+7$ &nbsp; (C) $-8$ &nbsp; (D) $4x^2-1$<br>
-      (E) $-5x$ &nbsp; (F) $\frac{1}{3}$ &nbsp; (G) $-x^2-5x$ &nbsp; (H) $5x+1$</p>
+      (A) 3x<sup>2</sup>-5x+1 &nbsp; (B) 4x+7 &nbsp; (C) -8 &nbsp; (D) 4x<sup>2</sup>-1<br>
+      (E) -5x &nbsp; (F) <span class="frac"><span class="num">1</span><span class="denom">3</span></span> &nbsp; (G) -x<sup>2</sup>-5x &nbsp; (H) 5x+1</p>
       <div style="margin:4px 0; line-height:1.9;">
         (1) 二次多項式：<span class="ans-reveal"><span class="ans-text">(A), (D), (G)</span></span><br>
         (2) 一次多項式：<span class="ans-reveal"><span class="ans-text">(B), (E), (H)</span></span><br>
@@ -615,15 +704,15 @@
 
     <!-- 題 2-3 -->
     <div class="card">
-      <p><strong>2. 已知多項式 $(a-3)x^2 + (b-1)x + 1$：</strong></p>
+      <p><strong>2. 已知多項式 (a-3)x<sup>2</sup> + (b-1)x + 1：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        (1) 若是二次多項式，則 $a$ 不能是 <span class="ans-reveal"><span class="ans-text">3</span></span>。<br>
-        (2) 若是一次多項式，則 $a$ 是 <span class="ans-reveal"><span class="ans-text">3</span></span>，$b$ 不能是 <span class="ans-reveal"><span class="ans-text">1</span></span>。<br>
-        (3) 若是常數多項式，則 $a$ 是 <span class="ans-reveal"><span class="ans-text">3</span></span>，$b$ 是 <span class="ans-reveal"><span class="ans-text">1</span></span>。
+        (1) 若是二次多項式，則 a 不能是 <span class="ans-reveal"><span class="ans-text">3</span></span>。<br>
+        (2) 若是一次多項式，則 a 是 <span class="ans-reveal"><span class="ans-text">3</span></span>，b 不能是 <span class="ans-reveal"><span class="ans-text">1</span></span>。<br>
+        (3) 若是常數多項式，則 a 是 <span class="ans-reveal"><span class="ans-text">3</span></span>，b 是 <span class="ans-reveal"><span class="ans-text">1</span></span>。
       </div>
       
-      <p style="margin-top:6px;"><strong>3. 已知多項式 $(a+4)x^2 + (b-3)x + 5$ 是常數多項式：</strong><br>
-      則 $a = $ <span class="ans-reveal"><span class="ans-text">-4</span></span>，$b = $ <span class="ans-reveal"><span class="ans-text">3</span></span>。</p>
+      <p style="margin-top:6px;"><strong>3. 已知多項式 (a+4)x<sup>2</sup> + (b-3)x + 5 是常數多項式：</strong><br>
+      則 a =  <span class="ans-reveal"><span class="ans-text">-4</span></span>，b =  <span class="ans-reveal"><span class="ans-text">3</span></span>。</p>
     </div>
   </div>
 </div>
@@ -642,13 +731,13 @@
   </div>
 
   <div class="box-note">
-    <p>「<strong>冪</strong>」：指的是 $x$ 的 <strong><span class="ans-reveal"><span class="ans-text">次方（次數）</span></span></strong>。</p>
+    <p>「<strong>冪</strong>」：指的是 x 的 <strong><span class="ans-reveal"><span class="ans-text">次方（次數）</span></span></strong>。</p>
     <p>❶ <strong>升冪排列</strong>：次數 <span class="ans-reveal"><span class="ans-text">由小到大</span></span> 排列，又稱升次排列。</p>
     <p>❷ <strong>降冪排列</strong>：次數 <span class="ans-reveal"><span class="ans-text">由大到小</span></span> 排列，又稱降次排列。</p>
     <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px; line-height:1.8;">
-      &lt;例如&gt; 多項式 $5x^2 + 2x^3 - 8 - 7x$：<br>
-      ❶ 升冪排列為：<span class="ans-reveal"><span class="ans-text">-8 - 7x + 5x^2 + 2x^3</span></span><br>
-      ❷ 降冪排列為：<span class="ans-reveal"><span class="ans-text">2x^3 + 5x^2 - 7x - 8</span></span>
+      &lt;例如&gt; 多項式 5x<sup>2</sup> + 2x<sup>3</sup> - 8 - 7x：<br>
+      ❶ 升冪排列為：<span class="ans-reveal"><span class="ans-text">-8 - 7x + 5x<sup>2</sup> + 2x<sup>3</sup></span></span><br>
+      ❷ 降冪排列為：<span class="ans-reveal"><span class="ans-text">2x<sup>3</sup> + 5x<sup>2</sup> - 7x - 8</span></span>
     </div>
     <div class="side-note" style="margin-top:4px;">☆ 筆記：通常我們在做多項式運算時，習慣用「降冪」排列！</div>
   </div>
@@ -662,17 +751,17 @@
     <div class="card">
       <p><strong>1. 請分別依升冪和降冪排列：</strong></p>
       <div style="margin:4px 0; font-size:11pt; line-height:1.8;">
-        <p><strong>(1) $-2x + 5x^2 - 2$</strong><br>
-        升冪：<span class="ans-reveal"><span class="ans-text">-2 - 2x + 5x^2</span></span><br>
-        降冪：<span class="ans-reveal"><span class="ans-text">5x^2 - 2x - 2</span></span></p>
+        <p><strong>(1) -2x + 5x<sup>2</sup> - 2</strong><br>
+        升冪：<span class="ans-reveal"><span class="ans-text">-2 - 2x + 5x<sup>2</sup></span></span><br>
+        降冪：<span class="ans-reveal"><span class="ans-text">5x<sup>2</sup> - 2x - 2</span></span></p>
         
-        <p><strong>(2) $-3 + 6x^2 - x$</strong><br>
-        升冪：<span class="ans-reveal"><span class="ans-text">-3 - x + 6x^2</span></span><br>
-        降冪：<span class="ans-reveal"><span class="ans-text">6x^2 - x - 3</span></span></p>
+        <p><strong>(2) -3 + 6x<sup>2</sup> - x</strong><br>
+        升冪：<span class="ans-reveal"><span class="ans-text">-3 - x + 6x<sup>2</sup></span></span><br>
+        降冪：<span class="ans-reveal"><span class="ans-text">6x<sup>2</sup> - x - 3</span></span></p>
         
-        <p><strong>(3) $7x - x^2 + 1$</strong><br>
-        升冪：<span class="ans-reveal"><span class="ans-text">1 + 7x - x^2</span></span><br>
-        降冪：<span class="ans-reveal"><span class="ans-text">-x^2 + 7x + 1</span></span></p>
+        <p><strong>(3) 7x - x<sup>2</sup> + 1</strong><br>
+        升冪：<span class="ans-reveal"><span class="ans-text">1 + 7x - x<sup>2</sup></span></span><br>
+        降冪：<span class="ans-reveal"><span class="ans-text">-x<sup>2</sup> + 7x + 1</span></span></p>
       </div>
     </div>
 
@@ -680,17 +769,17 @@
     <div class="card">
       <p><strong>2. 請分別依升冪和降冪排列：</strong></p>
       <div style="margin:4px 0; font-size:11pt; line-height:1.8;">
-        <p><strong>(1) $-x^3 + 2x - 3x^2$</strong><br>
-        升冪：<span class="ans-reveal"><span class="ans-text">2x - 3x^2 - x^3</span></span><br>
-        降冪：<span class="ans-reveal"><span class="ans-text">-x^3 - 3x^2 + 2x</span></span></p>
+        <p><strong>(1) -x<sup>3</sup> + 2x - 3x<sup>2</sup></strong><br>
+        升冪：<span class="ans-reveal"><span class="ans-text">2x - 3x<sup>2</sup> - x<sup>3</sup></span></span><br>
+        降冪：<span class="ans-reveal"><span class="ans-text">-x<sup>3</sup> - 3x<sup>2</sup> + 2x</span></span></p>
         
-        <p><strong>(2) $4x^2 - 6 - x^3 + 2x$</strong><br>
-        升冪：<span class="ans-reveal"><span class="ans-text">-6 + 2x + 4x^2 - x^3</span></span><br>
-        降冪：<span class="ans-reveal"><span class="ans-text">-x^3 + 4x^2 + 2x - 6</span></span></p>
+        <p><strong>(2) 4x<sup>2</sup> - 6 - x<sup>3</sup> + 2x</strong><br>
+        升冪：<span class="ans-reveal"><span class="ans-text">-6 + 2x + 4x<sup>2</sup> - x<sup>3</sup></span></span><br>
+        降冪：<span class="ans-reveal"><span class="ans-text">-x<sup>3</sup> + 4x<sup>2</sup> + 2x - 6</span></span></p>
         
-        <p><strong>(3) $2y^3 + 3 - 7y^2$</strong><br>
-        升冪：<span class="ans-reveal"><span class="ans-text">3 - 7y^2 + 2y^3</span></span><br>
-        降冪：<span class="ans-reveal"><span class="ans-text">2y^3 - 7y^2 + 3</span></span></p>
+        <p><strong>(3) 2y<sup>3</sup> + 3 - 7y<sup>2</sup></strong><br>
+        升冪：<span class="ans-reveal"><span class="ans-text">3 - 7y<sup>2</sup> + 2y<sup>3</sup></span></span><br>
+        降冪：<span class="ans-reveal"><span class="ans-text">2y<sup>3</sup> - 7y<sup>2</sup> + 3</span></span></p>
       </div>
     </div>
   </div>
@@ -713,8 +802,8 @@
     <p>❶ <strong>同類項</strong>：文字符號和次數都相同的項稱為 <strong><span class="ans-reveal"><span class="ans-text">同類項</span></span></strong>（即相同形狀與大小的紙板）。</p>
     <p>❷ <strong>同類項合併</strong>：兩個多項式相加減，就是 <span class="ans-reveal"><span class="ans-text">把同類項的係數相加減</span></span>。</p>
     <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
-      &lt;例如&gt; $(3x^2+2x+4) + (2x^2+3x+1)$<br>
-      $= (3+2)x^2 + (2+3)x + (4+1) = $ <span class="ans-reveal"><span class="ans-text">5x^2 + 5x + 5</span></span>
+      &lt;例如&gt; (3x<sup>2</sup>+2x+4) + (2x<sup>2</sup>+3x+1)<br>
+      = (3+2)x<sup>2</sup> + (2+3)x + (4+1) =  <span class="ans-reveal"><span class="ans-text">5x<sup>2</sup> + 5x + 5</span></span>
     </div>
   </div>
 
@@ -726,33 +815,33 @@
     <!-- 題 1-2 -->
     <div class="card">
       <p><strong>1. 下列哪些是同類項？</strong><br>
-      (A) $7x^2, -\frac{3}{5}x^2$ &nbsp; (B) $\frac{1}{2}y, 0.4y$<br>
-      (C) $-3x^4, \frac{7}{9}x^4$ &nbsp; (D) $-x^2, 5x$</p>
+      (A) 7x<sup>2</sup>, -<span class="frac"><span class="num">3</span><span class="denom">5</span></span>x<sup>2</sup> &nbsp; (B) <span class="frac"><span class="num">1</span><span class="denom">2</span></span>y, 0.4y<br>
+      (C) -3x<sup>4</sup>, <span class="frac"><span class="num">7</span><span class="denom">9</span></span>x<sup>4</sup> &nbsp; (D) -x<sup>2</sup>, 5x</p>
       <p>答：<span class="ans-reveal"><span class="ans-text">(A), (B), (C)</span></span></p>
       
       <p style="margin-top:6px;"><strong>2. 下列多項式中（填代號）：</strong><br>
-      (A) $-6x^2$ &nbsp; (B) $0.7$ &nbsp; (C) $\frac{3}{5}x$<br>
-      (D) $\frac{3}{2}x^2$ &nbsp; (E) $-1$ &nbsp; (F) $-3x$</p>
+      (A) -6x<sup>2</sup> &nbsp; (B) 0.7 &nbsp; (C) <span class="frac"><span class="num">3</span><span class="denom">5</span></span>x<br>
+      (D) <span class="frac"><span class="num">3</span><span class="denom">2</span></span>x<sup>2</sup> &nbsp; (E) -1 &nbsp; (F) -3x</p>
       <div style="margin:2px 0; line-height:1.8;">
-        (1) 和 $4x^2$ 是同類項：<span class="ans-reveal"><span class="ans-text">(A), (D)</span></span><br>
-        (2) 和 $-x$ 是同類項：<span class="ans-reveal"><span class="ans-text">(C), (F)</span></span><br>
-        (3) 和 $1.2$ 是同類項：<span class="ans-reveal"><span class="ans-text">(B), (E)</span></span>
+        (1) 和 4x<sup>2</sup> 是同類項：<span class="ans-reveal"><span class="ans-text">(A), (D)</span></span><br>
+        (2) 和 -x 是同類項：<span class="ans-reveal"><span class="ans-text">(C), (F)</span></span><br>
+        (3) 和 1.2 是同類項：<span class="ans-reveal"><span class="ans-text">(B), (E)</span></span>
       </div>
     </div>
 
     <!-- 題 3-4 -->
     <div class="card">
       <p><strong>3. 合併面積，並以降冪排列：</strong><br>
-      $(x^2+2x+2) + (2x^2+3x+3)$<br>
-      總面積 ＝ <span class="ans-reveal"><span class="ans-text">3x^2 + 5x + 5</span></span></p>
+      (x<sup>2</sup>+2x+2) + (2x<sup>2</sup>+3x+3)<br>
+      總面積 ＝ <span class="ans-reveal"><span class="ans-text">3x<sup>2</sup> + 5x + 5</span></span></p>
       
       <p style="margin-top:8px;"><strong>4. 計算並化簡下列各式（降冪排列）：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p>(1) $(4x^2+5x+9) + (2x^2+8x+1)$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">6x^2 + 13x + 10</span></span></p>
+        <p>(1) (4x<sup>2</sup>+5x+9) + (2x<sup>2</sup>+8x+1)<br>
+        =  <span class="ans-reveal"><span class="ans-text">6x<sup>2</sup> + 13x + 10</span></span></p>
         
-        <p>(2) $(6x^2+7x+2) + (x^2+8x+6)$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">7x^2 + 15x + 8</span></span></p>
+        <p>(2) (6x<sup>2</sup>+7x+2) + (x<sup>2</sup>+8x+6)<br>
+        =  <span class="ans-reveal"><span class="ans-text">7x<sup>2</sup> + 15x + 8</span></span></p>
       </div>
     </div>
   </div>
@@ -775,9 +864,9 @@
     <div style="display:flex; gap:20px;">
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; font-size:12pt;">
-        <strong>❶ 計算 $(3x^2-4x-2) + (-5x^2+4x+7)$</strong><br>
-        橫式：$= (3-5)x^2 + (-4+4)x + (-2+7)$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">-2x^2 + 5</span></span><br>
+        <strong>❶ 計算 (3x<sup>2</sup>-4x-2) + (-5x<sup>2</sup>+4x+7)</strong><br>
+        橫式：= (3-5)x<sup>2</sup> + (-4+4)x + (-2+7)<br>
+        =  <span class="ans-reveal"><span class="ans-text">-2x<sup>2</sup> + 5</span></span><br>
         直式：<br>
         <pre style="margin:2px 0; font-family:inherit; color:#2b6cb0;">   3x² - 4x - 2
 +) -5x² + 4x + 7
@@ -786,9 +875,9 @@
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; font-size:12pt;">
-        <strong>❷ 計算 $(-x^2+3) + (6x^2-4+5x)$</strong><br>
-        橫式：$= (-x^2+6x^2) + 5x + (3-4)$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">5x^2 + 5x - 1</span></span><br>
+        <strong>❷ 計算 (-x<sup>2</sup>+3) + (6x<sup>2</sup>-4+5x)</strong><br>
+        橫式：= (-x<sup>2</sup>+6x<sup>2</sup>) + 5x + (3-4)<br>
+        =  <span class="ans-reveal"><span class="ans-text">5x<sup>2</sup> + 5x - 1</span></span><br>
         直式（缺項對齊）：<br>
         <pre style="margin:2px 0; font-family:inherit; color:#2b6cb0;">  -x²      + 3
 +) 6x² + 5x - 4
@@ -808,17 +897,17 @@
     <div class="card">
       <p><strong>1. 請用橫式和直式計算各題：</strong></p>
       <div style="margin:4px 0; line-height:1.7;">
-        <p>(1) $(-3x^2+x-7) + (5x^2-x-4) = $ <span class="ans-reveal"><span class="ans-text">2x^2 - 11</span></span></p>
+        <p>(1) (-3x<sup>2</sup>+x-7) + (5x<sup>2</sup>-x-4) =  <span class="ans-reveal"><span class="ans-text">2x<sup>2</sup> - 11</span></span></p>
         <p>(2) 直式：<br>
-        &nbsp;&nbsp;$-3x^2 + x - 7$<br>
-        +) $5x^2 - x - 4$<br>
-        $\implies $ <span class="ans-reveal"><span class="ans-text">2x^2 - 11</span></span></p>
+        &nbsp;&nbsp;-3x<sup>2</sup> + x - 7<br>
+        +) 5x<sup>2</sup> - x - 4<br>
+        ⇒  <span class="ans-reveal"><span class="ans-text">2x<sup>2</sup> - 11</span></span></p>
         
-        <p>(3) $(5x^2+x-3) + (3x^2-2x-1) = $ <span class="ans-reveal"><span class="ans-text">8x^2 - x - 4</span></span></p>
+        <p>(3) (5x<sup>2</sup>+x-3) + (3x<sup>2</sup>-2x-1) =  <span class="ans-reveal"><span class="ans-text">8x<sup>2</sup> - x - 4</span></span></p>
         <p>(4) 直式：<br>
-        &nbsp;&nbsp;$5x^2 + x - 3$<br>
-        +) $3x^2 - 2x - 1$<br>
-        $\implies $ <span class="ans-reveal"><span class="ans-text">8x^2 - x - 4</span></span></p>
+        &nbsp;&nbsp;5x<sup>2</sup> + x - 3<br>
+        +) 3x<sup>2</sup> - 2x - 1<br>
+        ⇒  <span class="ans-reveal"><span class="ans-text">8x<sup>2</sup> - x - 4</span></span></p>
       </div>
     </div>
 
@@ -826,14 +915,14 @@
     <div class="card">
       <p><strong>2. 計算並化簡下列各式（降冪排列）：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $(-3x^2+5x) + (2x-4)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">-3x^2 + 7x - 4</span></span></p>
+        <p><strong>(1) (-3x<sup>2</sup>+5x) + (2x-4)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">-3x<sup>2</sup> + 7x - 4</span></span></p>
         
-        <p><strong>(2) $(6+x-7x^2) + (2x-5+7x^2)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">3x + 1</span></span>（$7x^2$ 抵消）</p>
+        <p><strong>(2) (6+x-7x<sup>2</sup>) + (2x-5+7x<sup>2</sup>)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">3x + 1</span></span>（7x<sup>2</sup> 抵消）</p>
         
-        <p><strong>(3) $(-x^2+7+x) + (2x-3+2x^2)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">x^2 + 3x + 4</span></span></p>
+        <p><strong>(3) (-x<sup>2</sup>+7+x) + (2x-3+2x<sup>2</sup>)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">x<sup>2</sup> + 3x + 4</span></span></p>
       </div>
     </div>
   </div>
@@ -856,9 +945,9 @@
     <div style="display:flex; gap:20px;">
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; font-size:12pt;">
-        <strong>❶ 計算 $(x^2-2x-7) - (3x^2+6-x)$</strong><br>
-        橫式：$= x^2 - 2x - 7 - 3x^2 - 6 + x$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">-2x^2 - x - 13</span></span><br>
+        <strong>❶ 計算 (x<sup>2</sup>-2x-7) - (3x<sup>2</sup>+6-x)</strong><br>
+        橫式：= x<sup>2</sup> - 2x - 7 - 3x<sup>2</sup> - 6 + x<br>
+        =  <span class="ans-reveal"><span class="ans-text">-2x<sup>2</sup> - x - 13</span></span><br>
         直式：<br>
         <pre style="margin:2px 0; font-family:inherit; color:#e53e3e;">   x² - 2x - 7
 -) 3x² -  x + 6
@@ -867,9 +956,9 @@
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; font-size:12pt;">
-        <strong>❷ 計算 $(-7+x^2) - (-5x^2+2-3x)$</strong><br>
-        橫式：$= x^2 - 7 + 5x^2 - 2 + 3x$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">6x^2 + 3x - 9</span></span><br>
+        <strong>❷ 計算 (-7+x<sup>2</sup>) - (-5x<sup>2</sup>+2-3x)</strong><br>
+        橫式：= x<sup>2</sup> - 7 + 5x<sup>2</sup> - 2 + 3x<br>
+        =  <span class="ans-reveal"><span class="ans-text">6x<sup>2</sup> + 3x - 9</span></span><br>
         直式：<br>
         <pre style="margin:2px 0; font-family:inherit; color:#e53e3e;">    x²      - 7
 -) -5x² - 3x + 2
@@ -889,17 +978,17 @@
     <div class="card">
       <p><strong>1. 請用橫式和直式計算各題：</strong></p>
       <div style="margin:4px 0; line-height:1.7;">
-        <p>(1) $(8x^2-7x+4) - (9x^2+7x-3) = $ <span class="ans-reveal"><span class="ans-text">-x^2 - 14x + 7</span></span></p>
+        <p>(1) (8x<sup>2</sup>-7x+4) - (9x<sup>2</sup>+7x-3) =  <span class="ans-reveal"><span class="ans-text">-x<sup>2</sup> - 14x + 7</span></span></p>
         <p>(2) 直式：<br>
-        &nbsp;&nbsp;$8x^2 - 7x + 4$<br>
-        -) $9x^2 + 7x - 3$<br>
-        $\implies $ <span class="ans-reveal"><span class="ans-text">-x^2 - 14x + 7</span></span></p>
+        &nbsp;&nbsp;8x<sup>2</sup> - 7x + 4<br>
+        -) 9x<sup>2</sup> + 7x - 3<br>
+        ⇒  <span class="ans-reveal"><span class="ans-text">-x<sup>2</sup> - 14x + 7</span></span></p>
         
-        <p>(3) $(6x^2-5x+2) - (7x^2+3x-5) = $ <span class="ans-reveal"><span class="ans-text">-x^2 - 8x + 7</span></span></p>
+        <p>(3) (6x<sup>2</sup>-5x+2) - (7x<sup>2</sup>+3x-5) =  <span class="ans-reveal"><span class="ans-text">-x<sup>2</sup> - 8x + 7</span></span></p>
         <p>(4) 直式：<br>
-        &nbsp;&nbsp;$6x^2 - 5x + 2$<br>
-        -) $7x^2 + 3x - 5$<br>
-        $\implies $ <span class="ans-reveal"><span class="ans-text">-x^2 - 8x + 7</span></span></p>
+        &nbsp;&nbsp;6x<sup>2</sup> - 5x + 2<br>
+        -) 7x<sup>2</sup> + 3x - 5<br>
+        ⇒  <span class="ans-reveal"><span class="ans-text">-x<sup>2</sup> - 8x + 7</span></span></p>
       </div>
     </div>
 
@@ -907,17 +996,17 @@
     <div class="card">
       <p><strong>2. 計算並化簡下列各式（降冪排列）：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $(-7x^2+5x-6) - (-4x^2+7x+2)$</strong><br>
-        $= -7x^2 + 5x - 6 + 4x^2 - 7x - 2$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">-3x^2 - 2x - 8</span></span></p>
+        <p><strong>(1) (-7x<sup>2</sup>+5x-6) - (-4x<sup>2</sup>+7x+2)</strong><br>
+        = -7x<sup>2</sup> + 5x - 6 + 4x<sup>2</sup> - 7x - 2<br>
+        =  <span class="ans-reveal"><span class="ans-text">-3x<sup>2</sup> - 2x - 8</span></span></p>
         
-        <p><strong>(2) $(-3x^2+7x-3) - (2x^2-9-5x)$</strong><br>
-        $= -3x^2 + 7x - 3 - 2x^2 + 9 + 5x$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">-5x^2 + 12x + 6</span></span></p>
+        <p><strong>(2) (-3x<sup>2</sup>+7x-3) - (2x<sup>2</sup>-9-5x)</strong><br>
+        = -3x<sup>2</sup> + 7x - 3 - 2x<sup>2</sup> + 9 + 5x<br>
+        =  <span class="ans-reveal"><span class="ans-text">-5x<sup>2</sup> + 12x + 6</span></span></p>
         
-        <p><strong>(3) $(11x^2+7x-3) - (2x^2-10-3x)$</strong><br>
-        $= 11x^2 + 7x - 3 - 2x^2 + 10 + 3x$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">9x^2 + 10x + 7</span></span></p>
+        <p><strong>(3) (11x<sup>2</sup>+7x-3) - (2x<sup>2</sup>-10-3x)</strong><br>
+        = 11x<sup>2</sup> + 7x - 3 - 2x<sup>2</sup> + 10 + 3x<br>
+        =  <span class="ans-reveal"><span class="ans-text">9x<sup>2</sup> + 10x + 7</span></span></p>
       </div>
     </div>
   </div>
@@ -939,16 +1028,16 @@
   <div class="box-note">
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div style="flex:1; padding-right:15px;">
-        <p>如右圖是一個長方形，長是 $(2x-3)$，寬是 $(x+4)$。請問：這個長方形的<strong>周長是多少？</strong></p>
+        <p>如右圖是一個長方形，長是 (2x-3)，寬是 (x+4)。請問：這個長方形的<strong>周長是多少？</strong></p>
         <div class="step-box">
           <div class="step-line ans-reveal">
-            <span class="step-num">步驟 ❶</span> 長方形周長公式：周長 ＝ $2 \times (\text{長} + \text{寬})$
+            <span class="step-num">步驟 ❶</span> 長方形周長公式：周長 ＝ 2 × (長 + 寬)
           </div>
           <div class="step-line ans-reveal">
-            <span class="step-num">步驟 ❷</span> 先算長加寬：$(2x - 3) + (x + 4) = 3x + 1$
+            <span class="step-num">步驟 ❷</span> 先算長加寬：(2x - 3) + (x + 4) = 3x + 1
           </div>
           <div class="step-line ans-reveal">
-            <span class="step-num">步驟 ❸</span> 乘以 2：$2 \times (3x + 1) = $ <span class="ans-text">6x + 2</span>
+            <span class="step-num">步驟 ❸</span> 乘以 2：2 × (3x + 1) =  <span class="ans-text">6x + 2</span>
           </div>
         </div>
       </div>
@@ -980,8 +1069,8 @@
         </svg>
       </div>
       <div style="margin:4px 0; line-height:1.8;">
-        長＋寬 ＝ $(2x+3) + (x-4) = 3x - 1$<br>
-        周長 ＝ $2 \times (3x - 1) = $ <span class="ans-reveal"><span class="ans-text">6x - 2</span></span>
+        長＋寬 ＝ (2x+3) + (x-4) = 3x - 1<br>
+        周長 ＝ 2 × (3x - 1) =  <span class="ans-reveal"><span class="ans-text">6x - 2</span></span>
       </div>
     </div>
 
@@ -996,8 +1085,8 @@
         </svg>
       </div>
       <div style="margin:4px 0; line-height:1.8;">
-        長＋寬 ＝ $(3x^2-7) + (x-6) = 3x^2 + x - 13$<br>
-        周長 ＝ $2 \times (3x^2+x-13) = $ <span class="ans-reveal"><span class="ans-text">6x^2 + 2x - 26</span></span>
+        長＋寬 ＝ (3x<sup>2</sup>-7) + (x-6) = 3x<sup>2</sup> + x - 13<br>
+        周長 ＝ 2 × (3x<sup>2</sup>+x-13) =  <span class="ans-reveal"><span class="ans-text">6x<sup>2</sup> + 2x - 26</span></span>
       </div>
     </div>
   </div>
