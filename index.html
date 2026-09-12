@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>國中數學 B3 第一章：乘法公式與多項式 - 雙模式教學電子書整合入口</title>
+<style>
+  :root {
+    --primary: #2b6cb0;
+    --primary-dark: #1a365d;
+    --primary-light: #ebf8ff;
+    --accent: #dd6b20;
+    --bg: #f7fafc;
+    --card-bg: #ffffff;
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    --border: #e2e8f0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "BiauKai", "DFKai-SB", "標楷體", serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 0 0 40px 0;
+  }
+
+  /* Header / Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+    color: white;
+    padding: 40px 20px 30px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13pt;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .hero h1 {
+    font-size: 26pt;
+    margin-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+  }
+  .hero p {
+    font-size: 14pt;
+    opacity: 0.92;
+    max-width: 800px;
+    margin: 0 auto 18px;
+  }
+
+  /* Stats Bar */
+  .stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+  }
+  .stat-pill {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-size: 12pt;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stat-num {
+    font-size: 16pt;
+    font-weight: bold;
+    color: #fefcbf;
+  }
+
+  /* Main Container */
+  .container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    font-size: 18pt;
+    font-weight: bold;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-left: 5px solid var(--primary);
+    padding-left: 12px;
+  }
+
+  /* Unit Cards Grid */
+  .unit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .unit-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+  }
+  .unit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-color: #90cdf4;
+  }
+
+  .card-top {
+    padding: 16px 20px 14px;
+    background: #edf2f7;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .unit-code {
+    font-size: 14pt;
+    font-weight: bold;
+    color: var(--primary);
+  }
+  .page-count-badge {
+    background: #2b6cb0;
+    color: white;
+    font-size: 10.5pt;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  .card-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .unit-title {
+    font-size: 17pt;
+    font-weight: bold;
+    color: #1a202c;
+    margin-bottom: 10px;
+  }
+  .unit-desc {
+    font-size: 12pt;
+    color: #4a5568;
+    margin-bottom: 16px;
+    flex: 1;
+    line-height: 1.6;
+  }
+  .feature-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .tag {
+    font-size: 10pt;
+    background: #f0fff4;
+    color: #276749;
+    border: 1px solid #c6f6d5;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .btn {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 12pt;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.15s;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+    border: 1px solid var(--primary);
+  }
+  .btn-primary:hover {
+    background: var(--primary-dark);
+  }
+  .btn-secondary {
+    background: #edf2f7;
+    color: #2d3748;
+    border: 1px solid #cbd5e0;
+  }
+  .btn-secondary:hover {
+    background: #e2e8f0;
+  }
+
+  /* Embedded Viewer Section */
+  .viewer-section {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .viewer-header {
+    background: #2d3748;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .tabs-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: #4a5568;
+    color: #e2e8f0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12pt;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover {
+    background: #718096;
+    color: white;
+  }
+  .tab-btn.active {
+    background: #3182ce;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+
+  .viewer-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .v-tool-btn {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 11pt;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .v-tool-btn:hover {
+    background: rgba(255,255,255,0.28);
+  }
+
+  .iframe-wrapper {
+    width: 100%;
+    height: 860px;
+    position: relative;
+    background: #edf2f7;
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* Instructions Footnote */
+  .instructions-card {
+    margin-top: 30px;
+    background: #ebf8ff;
+    border: 1px solid #bee3f8;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .instruction-icon {
+    font-size: 28pt;
+    line-height: 1;
+  }
+  .instruction-content h3 {
+    color: #2b6cb0;
+    margin-bottom: 6px;
+    font-size: 14pt;
+  }
+  .instruction-content p {
+    font-size: 11.5pt;
+    color: #2c5282;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<header class="hero">
+  <div class="hero-badge">國中八年級（上）數學第一章</div>
+  <h1>乘法公式與多項式・雙模式教學互動電子書</h1>
+  <p>專為基礎補強與大屏互動教學打造，全單元具備「學生端純淨 A4 列印」與「教師端大屏逐步揭曉」雙模式。</p>
+  
+  <div class="stats-container">
+    <div class="stat-pill">📚 單元數量：<span class="stat-num">3</span> 大單元</div>
+    <div class="stat-pill">📄 總頁數：<span class="stat-num">39</span> 頁 A4</div>
+    <div class="stat-pill">💡 互動提示：<span class="stat-num">400+</span> 處揭曉</div>
+    <div class="stat-pill">⚡ 純原生架構：<span class="stat-num">100%</span> 離線免連網</div>
+  </div>
+</header>
+
+<main class="container">
+  <!-- Unit Cards -->
+  <div class="section-title">
+    <span>📑 單元導航與獨立開啟</span>
+  </div>
+
+  <div class="unit-grid">
+    <!-- 1-1 乘法公式 -->
+    <div class="unit-card">
+      <div class="card-top">
+        <span class="unit-code">單元 1-1</span>
+        <span class="page-count-badge">15 頁</span>
+      </div>
+      <div class="card-body">
+        <div class="unit-title">乘法公式</div>
+        <div class="unit-desc">
+          分配律幾何面積模型拼貼、和的平方公式 $(a+b)^2$、差的平方公式 $(a-b)^2$、平方差公式 $(a+b)(a-b)$、大數速算與四則運算綜合題。
+        </div>
+        <div class="feature-tags">
+          <span class="tag">面積拼貼直觀化</span>
+          <span class="tag">三大公式精熟</span>
+          <span class="tag">大數速算</span>
+          <span class="tag">15頁全</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-primary" onclick="loadUnit(0)">📺 內嵌檢視</button>
+          <a href="B3_1-1_乘法公式_自製電子書.html" target="_blank" class="btn btn-secondary">↗ 另開新頁</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1-2 多項式的加法與減法 -->
+    <div class="unit-card">
+      <div class="card-top">
+        <span class="unit-code">單元 1-2</span>
+        <span class="page-count-badge">9 頁</span>
+      </div>
+      <div class="card-body">
+        <div class="unit-title">多項式的加法與減法</div>
+        <div class="unit-desc">
+          多項式的意義與防雷辨析（分母/絕對值/根號）、項與係數次數、常數多項式、升冪與降冪排列、同類項合併、直式橫式加減運算與長方形周長綜合題。
+        </div>
+        <div class="feature-tags">
+          <span class="tag">多項式辨析</span>
+          <span class="tag">升降冪排列</span>
+          <span class="tag">直式缺項補零</span>
+          <span class="tag">9頁全</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-primary" onclick="loadUnit(1)">📺 內嵌檢視</button>
+          <a href="B3_1-2_多項式的加法與減法_自製電子書.html" target="_blank" class="btn btn-secondary">↗ 另開新頁</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1-3 多項式的乘法與除法 -->
+    <div class="unit-card">
+      <div class="card-top">
+        <span class="unit-code">單元 1-3</span>
+        <span class="page-count-badge">15 頁</span>
+      </div>
+      <div class="card-body">
+        <div class="unit-title">多項式的乘法與除法</div>
+        <div class="unit-desc">
+          單項式與多項式乘法、缺項補零直式乘法、乘法公式應用、幾何圖形與挖空面積、單項式相除、直式長除法四字口訣（排商乘減）、除法停止條件判定、被除式除法關係式。
+        </div>
+        <div class="feature-tags">
+          <span class="tag">缺項補零對齊</span>
+          <span class="tag">直式長除法</span>
+          <span class="tag">餘式次數判定</span>
+          <span class="tag">15頁全</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-primary" onclick="loadUnit(2)">📺 內嵌檢視</button>
+          <a href="B3_1-3_多項式的乘法與除法_自製電子書.html" target="_blank" class="btn btn-secondary">↗ 另開新頁</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Integrated Viewer -->
+  <div class="section-title">
+    <span>📺 教室大屏整合投影播放器</span>
+  </div>
+
+  <div class="viewer-section">
+    <div class="viewer-header">
+      <div class="tabs-group">
+        <button class="tab-btn active" id="tab-0" onclick="loadUnit(0)">📘 1-1 乘法公式 (15頁)</button>
+        <button class="tab-btn" id="tab-1" onclick="loadUnit(1)">📐 1-2 多項式加減 (9頁)</button>
+        <button class="tab-btn" id="tab-2" onclick="loadUnit(2)">🔍 1-3 多項式乘除 (15頁)</button>
+      </div>
+      <div class="viewer-tools">
+        <a id="open-external-btn" href="B3_1-1_乘法公式_自製電子書.html" target="_blank" class="v-tool-btn">↗ 獨立全視窗開啟</a>
+        <button class="v-tool-btn" onclick="toggleFullscreen()">⛶ 全螢幕教學</button>
+      </div>
+    </div>
+    <div class="iframe-wrapper" id="viewer-container">
+      <iframe id="ebook-frame" src="B3_1-1_乘法公式_自製電子書.html" title="電子書播放器"></iframe>
+    </div>
+  </div>
+
+  <!-- Instruction Notes -->
+  <div class="instructions-card">
+    <div class="instruction-icon">💡</div>
+    <div class="instruction-content">
+      <h3>雙模式使用說明：</h3>
+      <p>
+        <strong>1. 教師端大屏教學</strong>：點選上方任一單元標籤，即可在內嵌播放器中直接進行教學。電子書右上方設有純 Emoji 工具列：點擊 <strong>📑</strong> 可快速跳頁、<strong>👁️</strong> 可一鍵揭曉全書解答、<strong>✏️</strong> 可開啟彩色板書筆在大屏上圈選計算式與幾何圖、<strong>🧹</strong> 可清除畫跡。<br>
+        <strong>2. 學生端純淨列印</strong>：在任一單元按下 <strong>Ctrl + P</strong> 或點擊 <strong>🖨️</strong>，所有解答紅字與工具列將 100% 自動隱藏，還原為標準純白紙評量單，容器邊界嚴格鎖定 A4，絕無任何多餘空白溢頁！
+      </p>
+    </div>
+  </div>
+</main>
+
+<script>
+  const units = [
+    { title: "B3 1-1 乘法公式", url: "B3_1-1_乘法公式_自製電子書.html" },
+    { title: "B3 1-2 多項式的加法與減法", url: "B3_1-2_多項式的加法與減法_自製電子書.html" },
+    { title: "B3 1-3 多項式的乘法與除法", url: "B3_1-3_多項式的乘法與除法_自製電子書.html" }
+  ];
+
+  function loadUnit(index) {
+    const frame = document.getElementById('ebook-frame');
+    const extBtn = document.getElementById('open-external-btn');
+    
+    // Update active tab
+    for (let i = 0; i < units.length; i++) {
+      const tab = document.getElementById(`tab-${i}`);
+      if (tab) tab.classList.toggle('active', i === index);
+    }
+    
+    // Set frame src & external link
+    frame.src = units[index].url;
+    extBtn.href = units[index].url;
+  }
+
+  function toggleFullscreen() {
+    const container = document.getElementById('viewer-container');
+    if (!document.fullscreenElement) {
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  }
+</script>
+</body>
+</html>
