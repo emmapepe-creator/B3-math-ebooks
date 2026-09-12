@@ -273,6 +273,95 @@
       background: #fff !important;
     }
   }
+
+  /* Mathematical Typesetting & Typography */
+  .math-term, sup, sub, .frac {
+    font-family: "Times New Roman", "Cambria Math", serif;
+  }
+  sup {
+    font-size: 0.72em;
+    vertical-align: 0.42em;
+    line-height: 0;
+  }
+  sub {
+    font-size: 0.72em;
+    vertical-align: -0.25em;
+    line-height: 0;
+  }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: -0.42em;
+    text-align: center;
+    padding: 0 2px;
+    font-size: 0.88em;
+    line-height: 1;
+  }
+  .frac .num {
+    border-bottom: 1.2px solid currentColor;
+    padding: 0 2px 1px 2px;
+    display: block;
+  }
+  .frac .denom {
+    padding: 1px 2px 0 2px;
+    display: block;
+  }
+  /* Long Division Table */
+  .long-div-table {
+    display: inline-table;
+    border-collapse: collapse;
+    font-family: "Times New Roman", serif;
+    font-size: 13pt;
+    line-height: 1.35;
+    margin: 4px 0;
+    vertical-align: middle;
+  }
+  .long-div-table td {
+    padding: 1px 5px;
+    white-space: nowrap;
+  }
+  .ld-quotient {
+    border-bottom: 2px solid #2d3748;
+    font-weight: bold;
+    text-align: left;
+  }
+  .ld-divisor {
+    text-align: right;
+    padding-right: 6px;
+  }
+  .ld-dividend {
+    border-left: 2px solid #2d3748;
+    border-top-left-radius: 4px;
+    padding-left: 8px;
+    text-align: left;
+  }
+  .ld-sub {
+    border-bottom: 1.5px solid #718096;
+    text-align: left;
+  }
+  .ld-rem {
+    text-align: right;
+    font-weight: bold;
+    color: #c53030;
+  }
+  .ld-step {
+    text-align: left;
+  }
+  /* Vertical Multiplication Table */
+  .vert-mult-table {
+    display: inline-table;
+    border-collapse: collapse;
+    font-family: "Times New Roman", serif;
+    font-size: 13pt;
+    line-height: 1.35;
+    margin: 4px 0;
+    text-align: right;
+  }
+  .vert-mult-table td {
+    padding: 1px 4px;
+    white-space: nowrap;
+  }
+
 </style>
 </head>
 <body>
@@ -314,18 +403,18 @@
   
   <div class="concept-banner">
     <span class="concept-badge">概念 ❶</span>
-    <span class="concept-title">分配律 $a(b+c) = ab + ac$</span>
+    <span class="concept-title">分配律 a(b+c) = ab + ac</span>
   </div>
 
   <div class="box-note">
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div style="flex:1; padding-right:15px;">
-        <p>下圖的長方形中，長是 $a$、寬是 $(c+d)$，面積表示成 <span class="ans-reveal"><span class="ans-text">a(c+d)</span></span>。</p>
+        <p>下圖的長方形中，長是 a、寬是 (c+d)，面積表示成 <span class="ans-reveal"><span class="ans-text">a(c+d)</span></span>。</p>
         <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
-          $a(c+d) = $ <span class="ans-reveal"><span class="ans-text">ac + ad</span></span>
+          a(c+d) =  <span class="ans-reveal"><span class="ans-text">ac + ad</span></span>
         </p>
         <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
-          <strong>&lt;例&gt;</strong> $18 \times (100+2) = $ <span class="ans-reveal"><span class="ans-text">18 \times 100 + 18 \times 2</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1800 + 36 = 1836</span></span>
+          <strong>&lt;例&gt;</strong> 18 × (100+2) =  <span class="ans-reveal"><span class="ans-text">18 × 100 + 18 × 2</span></span>  =  <span class="ans-reveal"><span class="ans-text">1800 + 36 = 1836</span></span>
         </div>
       </div>
       <div style="width:230px; text-align:center;">
@@ -366,23 +455,23 @@
     <div class="card">
       <p><strong>1. 利用分配律完成下列各式：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(1) $a(b-c) = $ <span class="ans-reveal"><span class="ans-text">ab - ac</span></span></p>
-        <p>(2) $a(a+3) = $ <span class="ans-reveal"><span class="ans-text">a^2 + 3a</span></span></p>
-        <p>(3) $a(a-5) = $ <span class="ans-reveal"><span class="ans-text">a^2 - 5a</span></span></p>
+        <p>(1) a(b-c) =  <span class="ans-reveal"><span class="ans-text">ab - ac</span></span></p>
+        <p>(2) a(a+3) =  <span class="ans-reveal"><span class="ans-text">a<sup>2</sup> + 3a</span></span></p>
+        <p>(3) a(a-5) =  <span class="ans-reveal"><span class="ans-text">a<sup>2</sup> - 5a</span></span></p>
       </div>
-      <div class="scratch-pad">括號外的數分別乘進去：$a \times a = a^2$，$a \times 3 = 3a$</div>
+      <div class="scratch-pad">括號外的數分別乘進去：a × a = a<sup>2</sup>，a × 3 = 3a</div>
     </div>
 
     <!-- 題 2 -->
     <div class="card">
       <p><strong>2. 利用分配律計算下列各題：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p>(1) $a(b+5) = $ <span class="ans-reveal"><span class="ans-text">ab + 5a</span></span></p>
-        <p>(2) $a(b-7) = $ <span class="ans-reveal"><span class="ans-text">ab - 7a</span></span></p>
-        <p>(3) $a(a+2) = $ <span class="ans-reveal"><span class="ans-text">a^2 + 2a</span></span></p>
-        <p>(4) $a(a-9) = $ <span class="ans-reveal"><span class="ans-text">a^2 - 9a</span></span></p>
-        <p>(5) $12 \times (100+3) = $ <span class="ans-reveal"><span class="ans-text">12 \times 100 + 12 \times 3</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1200 + 36 = 1236</span></span></p>
-        <p>(6) $12 \times (100-3) = $ <span class="ans-reveal"><span class="ans-text">12 \times 100 - 12 \times 3</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1200 - 36 = 1164</span></span></p>
+        <p>(1) a(b+5) =  <span class="ans-reveal"><span class="ans-text">ab + 5a</span></span></p>
+        <p>(2) a(b-7) =  <span class="ans-reveal"><span class="ans-text">ab - 7a</span></span></p>
+        <p>(3) a(a+2) =  <span class="ans-reveal"><span class="ans-text">a<sup>2</sup> + 2a</span></span></p>
+        <p>(4) a(a-9) =  <span class="ans-reveal"><span class="ans-text">a<sup>2</sup> - 9a</span></span></p>
+        <p>(5) 12 × (100+3) =  <span class="ans-reveal"><span class="ans-text">12 × 100 + 12 × 3</span></span>  =  <span class="ans-reveal"><span class="ans-text">1200 + 36 = 1236</span></span></p>
+        <p>(6) 12 × (100-3) =  <span class="ans-reveal"><span class="ans-text">12 × 100 - 12 × 3</span></span>  =  <span class="ans-reveal"><span class="ans-text">1200 - 36 = 1164</span></span></p>
       </div>
     </div>
   </div>
@@ -408,16 +497,16 @@
           <!-- 例 1 -->
           <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
             <strong>❶ 長 16，寬 102：</strong><br>
-            列式：$16 \times 102$<br>
-            拆開：$= 16 \times (100 + 2)$<br>
-            $= $ <span class="ans-reveal"><span class="ans-text">1600 + 32</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1632</span></span>
+            列式：16 × 102<br>
+            拆開：= 16 × (100 + 2)<br>
+            =  <span class="ans-reveal"><span class="ans-text">1600 + 32</span></span>  =  <span class="ans-reveal"><span class="ans-text">1632</span></span>
           </div>
           <!-- 例 2 -->
           <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
             <strong>❷ 長 16，寬 99：</strong><br>
-            列式：$16 \times 99$<br>
-            拆開：$= 16 \times (100 - 1)$<br>
-            $= $ <span class="ans-reveal"><span class="ans-text">1600 - 16</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1584</span></span>
+            列式：16 × 99<br>
+            拆開：= 16 × (100 - 1)<br>
+            =  <span class="ans-reveal"><span class="ans-text">1600 - 16</span></span>  =  <span class="ans-reveal"><span class="ans-text">1584</span></span>
           </div>
         </div>
       </div>
@@ -446,12 +535,12 @@
       <p><strong>1. 利用分配律求長方形面積（請寫出算式）：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
         <p><strong>(1) 長 23，寬 103：</strong><br>
-        列式：<span class="ans-reveal"><span class="ans-text">23 \times 103</span></span><br>
-        拆開：$= 23 \times (100 + 3) = $ <span class="ans-reveal"><span class="ans-text">2300 + 69 = 2369</span></span></p>
+        列式：<span class="ans-reveal"><span class="ans-text">23 × 103</span></span><br>
+        拆開：= 23 × (100 + 3) =  <span class="ans-reveal"><span class="ans-text">2300 + 69 = 2369</span></span></p>
         
         <p style="margin-top:6px;"><strong>(2) 長 23，寬 98：</strong><br>
-        列式：<span class="ans-reveal"><span class="ans-text">23 \times 98</span></span><br>
-        拆開：$= 23 \times (100 - 2) = $ <span class="ans-reveal"><span class="ans-text">2300 - 46 = 2254</span></span></p>
+        列式：<span class="ans-reveal"><span class="ans-text">23 × 98</span></span><br>
+        拆開：= 23 × (100 - 2) =  <span class="ans-reveal"><span class="ans-text">2300 - 46 = 2254</span></span></p>
       </div>
     </div>
 
@@ -459,16 +548,16 @@
     <div class="card">
       <p><strong>2. 求下列各值（請寫出算式）：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $12 \times 106$</strong><br>
-        $= 12 \times (100 + $ <span class="ans-reveal"><span class="ans-text">6</span></span> $)$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">1200 + 72</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1272</span></span></p>
+        <p><strong>(1) 12 × 106</strong><br>
+        = 12 × (100 +  <span class="ans-reveal"><span class="ans-text">6</span></span> )<br>
+        =  <span class="ans-reveal"><span class="ans-text">1200 + 72</span></span>  =  <span class="ans-reveal"><span class="ans-text">1272</span></span></p>
         
-        <p style="margin-top:4px;"><strong>(2) $6 \times 999$</strong><br>
-        $= 6 \times (1000 - $ <span class="ans-reveal"><span class="ans-text">1</span></span> $)$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">6000 - 6</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">5994</span></span></p>
+        <p style="margin-top:4px;"><strong>(2) 6 × 999</strong><br>
+        = 6 × (1000 -  <span class="ans-reveal"><span class="ans-text">1</span></span> )<br>
+        =  <span class="ans-reveal"><span class="ans-text">6000 - 6</span></span>  =  <span class="ans-reveal"><span class="ans-text">5994</span></span></p>
         
-        <p style="margin-top:4px;"><strong>(3) $12 \times 98$</strong><br>
-        $= 12 \times (100 - 2) = $ <span class="ans-reveal"><span class="ans-text">1200 - 24 = 1176</span></span></p>
+        <p style="margin-top:4px;"><strong>(3) 12 × 98</strong><br>
+        = 12 × (100 - 2) =  <span class="ans-reveal"><span class="ans-text">1200 - 24 = 1176</span></span></p>
       </div>
     </div>
   </div>
@@ -484,20 +573,20 @@
   
   <div class="concept-banner">
     <span class="concept-badge">概念 ❷</span>
-    <span class="concept-title">分配律 $(a+b)(c+d) = ac + ad + bc + bd$</span>
+    <span class="concept-title">分配律 (a+b)(c+d) = ac + ad + bc + bd</span>
   </div>
 
   <div class="box-note">
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div style="flex:1; padding-right:15px;">
-        <p>長方形中，長是 $(a+b)$、寬是 $(c+d)$，面積可表示成：</p>
+        <p>長方形中，長是 (a+b)、寬是 (c+d)，面積可表示成：</p>
         <p style="font-weight:bold; font-size:14pt; text-align:center; color:#1a365d; margin:6px 0;">
-          $(a+b)(c+d) = $ <span class="ans-reveal"><span class="ans-text">ac + ad + bc + bd</span></span>
+          (a+b)(c+d) =  <span class="ans-reveal"><span class="ans-text">ac + ad + bc + bd</span></span>
         </p>
         <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px; font-size:12pt; line-height:1.7;">
-          <strong>&lt;例&gt;</strong> $(200+1) \times (100+2)$<br>
-          $= 200 \times 100 + 200 \times 2 + 1 \times 100 + 1 \times 2$<br>
-          $= $ <span class="ans-reveal"><span class="ans-text">20000 + 400 + 100 + 2</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">20502</span></span>
+          <strong>&lt;例&gt;</strong> (200+1) × (100+2)<br>
+          = 200 × 100 + 200 × 2 + 1 × 100 + 1 × 2<br>
+          =  <span class="ans-reveal"><span class="ans-text">20000 + 400 + 100 + 2</span></span>  =  <span class="ans-reveal"><span class="ans-text">20502</span></span>
         </div>
       </div>
       <div style="width:230px; text-align:center;">
@@ -525,7 +614,7 @@
           <!-- 括號示意圖 -->
           <text x="140" y="55" font-size="11" fill="#718096">合起來＝四塊相加</text>
         </svg>
-        <div class="side-note">☆ 筆記：$(a+b)(c+d) = $ 甲＋乙＋丙＋丁</div>
+        <div class="side-note">☆ 筆記：(a+b)(c+d) =  甲＋乙＋丙＋丁</div>
       </div>
     </div>
   </div>
@@ -539,14 +628,14 @@
     <div class="card">
       <p><strong>1. 在空格中填入各長方形面積並計算總面積：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $(a+3)(b+5)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">ab + 5a + 3b + 15</span></span></p>
+        <p><strong>(1) (a+3)(b+5)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">ab + 5a + 3b + 15</span></span></p>
         
-        <p><strong>(2) $(a+4)(c+6)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">ac + 6a + 4c + 24</span></span></p>
+        <p><strong>(2) (a+4)(c+6)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">ac + 6a + 4c + 24</span></span></p>
         
-        <p><strong>(3) $(x+5)(y+7)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">xy + 7x + 5y + 35</span></span></p>
+        <p><strong>(3) (x+5)(y+7)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">xy + 7x + 5y + 35</span></span></p>
       </div>
     </div>
 
@@ -554,19 +643,19 @@
     <div class="card">
       <p><strong>2. 利用分配律計算下列各題：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $(x+8)(y+9)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">xy + 9x + 8y + 72</span></span></p>
+        <p><strong>(1) (x+8)(y+9)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">xy + 9x + 8y + 72</span></span></p>
         
-        <p><strong>(2) $(x-1)(y+2)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">xy + 2x - y - 2</span></span></p>
+        <p><strong>(2) (x-1)(y+2)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">xy + 2x - y - 2</span></span></p>
         
-        <p><strong>(3) $(a+2)(b-3)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">ab - 3a + 2b - 6</span></span></p>
+        <p><strong>(3) (a+2)(b-3)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">ab - 3a + 2b - 6</span></span></p>
         
-        <p><strong>(4) $(a-3)(b-4)$</strong><br>
-        $= $ <span class="ans-reveal"><span class="ans-text">ab - 4a - 3b + 12</span></span></p>
+        <p><strong>(4) (a-3)(b-4)</strong><br>
+        =  <span class="ans-reveal"><span class="ans-text">ab - 4a - 3b + 12</span></span></p>
       </div>
-      <div class="scratch-pad">注意負號：$(-3) \times (-4) = +12$</div>
+      <div class="scratch-pad">注意負號：(-3) × (-4) = +12</div>
     </div>
   </div>
 </div>
@@ -589,16 +678,16 @@
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
         <strong>❶ 長 201，寬 102：</strong><br>
-        列式：$201 \times 102$<br>
-        拆開：$= (200+1)(100+2)$<br>
-        $= 20000 + 400 + 100 + 2 = $ <span class="ans-reveal"><span class="ans-text">20502</span></span>
+        列式：201 × 102<br>
+        拆開：= (200+1)(100+2)<br>
+        = 20000 + 400 + 100 + 2 =  <span class="ans-reveal"><span class="ans-text">20502</span></span>
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
         <strong>❷ 長 125，寬 98：</strong><br>
-        列式：$125 \times 98$<br>
-        拆開：$= 125 \times (100-2)$<br>
-        $= 12500 - 250 = $ <span class="ans-reveal"><span class="ans-text">12250</span></span>
+        列式：125 × 98<br>
+        拆開：= 125 × (100-2)<br>
+        = 12500 - 250 =  <span class="ans-reveal"><span class="ans-text">12250</span></span>
       </div>
     </div>
   </div>
@@ -612,9 +701,9 @@
     <div class="card">
       <p><strong>(1) 長 301，寬 102：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        列式：$301 \times 102$<br>
-        拆開：$= (300+1)(100+2)$<br>
-        $= 30000 + 600 + 100 + 2 = $ <span class="ans-reveal"><span class="ans-text">30702</span></span>
+        列式：301 × 102<br>
+        拆開：= (300+1)(100+2)<br>
+        = 30000 + 600 + 100 + 2 =  <span class="ans-reveal"><span class="ans-text">30702</span></span>
       </div>
     </div>
 
@@ -622,9 +711,9 @@
     <div class="card">
       <p><strong>(3) 長 11，寬 104：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        列式：$11 \times 104$<br>
-        拆開：$= (10+1)(100+4)$<br>
-        $= 1000 + 40 + 100 + 4 = $ <span class="ans-reveal"><span class="ans-text">1144</span></span>
+        列式：11 × 104<br>
+        拆開：= (10+1)(100+4)<br>
+        = 1000 + 40 + 100 + 4 =  <span class="ans-reveal"><span class="ans-text">1144</span></span>
       </div>
     </div>
 
@@ -632,9 +721,9 @@
     <div class="card">
       <p><strong>(2) 長 125，寬 99：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        列式：$125 \times 99$<br>
-        拆開：$= 125 \times (100-1)$<br>
-        $= 12500 - 125 = $ <span class="ans-reveal"><span class="ans-text">12375</span></span>
+        列式：125 × 99<br>
+        拆開：= 125 × (100-1)<br>
+        = 12500 - 125 =  <span class="ans-reveal"><span class="ans-text">12375</span></span>
       </div>
     </div>
 
@@ -642,9 +731,9 @@
     <div class="card">
       <p><strong>(4) 長 111，寬 98：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        列式：$111 \times 98$<br>
-        拆開：$= (100+11)(100-2)$<br>
-        $= 10000 - 200 + 1100 - 22 = $ <span class="ans-reveal"><span class="ans-text">10878</span></span>
+        列式：111 × 98<br>
+        拆開：= (100+11)(100-2)<br>
+        = 10000 - 200 + 1100 - 22 =  <span class="ans-reveal"><span class="ans-text">10878</span></span>
       </div>
     </div>
   </div>
@@ -667,15 +756,15 @@
     <div style="display:flex; gap:20px;">
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(1) $103 \times 107$</strong><br>
-        $= (100+3)(100+7)$<br>
-        $= 10000 + 700 + 300 + 21 = $ <span class="ans-reveal"><span class="ans-text">11021</span></span>
+        <strong>(1) 103 × 107</strong><br>
+        = (100+3)(100+7)<br>
+        = 10000 + 700 + 300 + 21 =  <span class="ans-reveal"><span class="ans-text">11021</span></span>
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(2) $99 \times 97$</strong><br>
-        $= (100-1)(100-3)$<br>
-        $= 10000 - 300 - 100 + 3 = $ <span class="ans-reveal"><span class="ans-text">9603</span></span>
+        <strong>(2) 99 × 97</strong><br>
+        = (100-1)(100-3)<br>
+        = 10000 - 300 - 100 + 3 =  <span class="ans-reveal"><span class="ans-text">9603</span></span>
       </div>
     </div>
     <div class="side-note" style="margin-top:8px;">☆ 筆記：利用分配律計算主要的目的，是將難算的數字拆成整百整十，化繁為簡！</div>
@@ -690,17 +779,17 @@
     <div class="card">
       <p><strong>1. 利用分配律計算下列各題：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $104 \times 106$</strong><br>
-        $= (100+4)(100+6)$<br>
-        $= 10000 + 600 + 400 + 24 = $ <span class="ans-reveal"><span class="ans-text">11024</span></span></p>
+        <p><strong>(1) 104 × 106</strong><br>
+        = (100+4)(100+6)<br>
+        = 10000 + 600 + 400 + 24 =  <span class="ans-reveal"><span class="ans-text">11024</span></span></p>
         
-        <p><strong>(2) $102 \times 101$</strong><br>
-        $= (100+2)(100+1)$<br>
-        $= 10000 + 100 + 200 + 2 = $ <span class="ans-reveal"><span class="ans-text">10302</span></span></p>
+        <p><strong>(2) 102 × 101</strong><br>
+        = (100+2)(100+1)<br>
+        = 10000 + 100 + 200 + 2 =  <span class="ans-reveal"><span class="ans-text">10302</span></span></p>
         
-        <p><strong>(3) $102 \times 99$</strong><br>
-        $= (100+2)(100-1)$<br>
-        $= 10000 - 100 + 200 - 2 = $ <span class="ans-reveal"><span class="ans-text">10098</span></span></p>
+        <p><strong>(3) 102 × 99</strong><br>
+        = (100+2)(100-1)<br>
+        = 10000 - 100 + 200 - 2 =  <span class="ans-reveal"><span class="ans-text">10098</span></span></p>
       </div>
     </div>
 
@@ -708,17 +797,17 @@
     <div class="card">
       <p><strong>2. 利用分配律計算下列各題：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $99 \times 98$</strong><br>
-        $= (100-1)(100-2)$<br>
-        $= 10000 - 200 - 100 + 2 = $ <span class="ans-reveal"><span class="ans-text">9702</span></span></p>
+        <p><strong>(1) 99 × 98</strong><br>
+        = (100-1)(100-2)<br>
+        = 10000 - 200 - 100 + 2 =  <span class="ans-reveal"><span class="ans-text">9702</span></span></p>
         
-        <p><strong>(2) $99 \times 97$</strong><br>
-        $= (100-1)(100-3)$<br>
-        $= 10000 - 300 - 100 + 3 = $ <span class="ans-reveal"><span class="ans-text">9603</span></span></p>
+        <p><strong>(2) 99 × 97</strong><br>
+        = (100-1)(100-3)<br>
+        = 10000 - 300 - 100 + 3 =  <span class="ans-reveal"><span class="ans-text">9603</span></span></p>
         
-        <p><strong>(3) $98 \times 97$</strong><br>
-        $= (100-2)(100-3)$<br>
-        $= 10000 - 300 - 200 + 6 = $ <span class="ans-reveal"><span class="ans-text">9506</span></span></p>
+        <p><strong>(3) 98 × 97</strong><br>
+        = (100-2)(100-3)<br>
+        = 10000 - 300 - 200 + 6 =  <span class="ans-reveal"><span class="ans-text">9506</span></span></p>
       </div>
     </div>
   </div>
@@ -734,18 +823,18 @@
   
   <div class="concept-banner">
     <span class="concept-badge">概念 ❸</span>
-    <span class="concept-title">和的平方公式 $(a+b)^2 = a^2 + 2ab + b^2$</span>
+    <span class="concept-title">和的平方公式 (a+b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></span>
   </div>
 
   <div class="box-note">
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div style="flex:1; padding-right:15px;">
-        <p>邊長為 $(a+b)$ 的大正方形，面積可表示為：</p>
+        <p>邊長為 (a+b) 的大正方形，面積可表示為：</p>
         <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
-          $(a+b)^2 = $ <span class="ans-reveal"><span class="ans-text">a^2 + 2ab + b^2</span></span>
+          (a+b)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">a<sup>2</sup> + 2ab + b<sup>2</sup></span></span>
         </p>
         <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
-          <strong>&lt;例&gt;</strong> $908^2 = (900 + $ <span class="ans-reveal"><span class="ans-text">8</span></span> $)^2$
+          <strong>&lt;例&gt;</strong> 908<sup>2</sup> = (900 +  <span class="ans-reveal"><span class="ans-text">8</span></span> )<sup>2</sup>
         </div>
       </div>
       <div style="width:230px; text-align:center;">
@@ -770,7 +859,7 @@
           
           <text x="135" y="55" font-size="11" fill="#c53030" font-weight="bold">＝ a² + 2ab + b²</text>
         </svg>
-        <div class="side-note">☆ 筆記：$908^2 = 900^2 + 8^2$ 對嗎？（錯！漏了 $2ab$）</div>
+        <div class="side-note">☆ 筆記：908<sup>2</sup> = 900<sup>2</sup> + 8<sup>2</sup> 對嗎？（錯！漏了 2ab）</div>
       </div>
     </div>
   </div>
@@ -784,15 +873,15 @@
     <div class="card">
       <p><strong>1. 計算下列正方形面積：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(1) $(x+y)^2 = $ <span class="ans-reveal"><span class="ans-text">x^2 + 2xy + y^2</span></span></p>
-        <p>(2) $(c+d)^2 = $ <span class="ans-reveal"><span class="ans-text">c^2 + 2cd + d^2</span></span></p>
-        <p>(3) $(x+3)^2 = $ <span class="ans-reveal"><span class="ans-text">x^2 + 6x + 9</span></span></p>
+        <p>(1) (x+y)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">x<sup>2</sup> + 2xy + y<sup>2</sup></span></span></p>
+        <p>(2) (c+d)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">c<sup>2</sup> + 2cd + d<sup>2</sup></span></span></p>
+        <p>(3) (x+3)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">x<sup>2</sup> + 6x + 9</span></span></p>
       </div>
       
       <p style="margin-top:6px;"><strong>2. 計算下列正方形面積：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p>(1) $(100+2)^2 = $ <span class="ans-reveal"><span class="ans-text">100^2 + 2 \times 100 \times 2 + 2^2 = 10404</span></span></p>
-        <p>(2) $(20+1)^2 = $ <span class="ans-reveal"><span class="ans-text">20^2 + 2 \times 20 \times 1 + 1^2 = 441</span></span></p>
+        <p>(1) (100+2)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">100<sup>2</sup> + 2 × 100 × 2 + 2<sup>2</sup> = 10404</span></span></p>
+        <p>(2) (20+1)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">20<sup>2</sup> + 2 × 20 × 1 + 1<sup>2</sup> = 441</span></span></p>
       </div>
     </div>
 
@@ -800,13 +889,13 @@
     <div class="card">
       <p><strong>3. 判斷下列等式是否正確，若有錯誤請改正：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(A) $\square (10+2)^2 = 10^2 + 2^2$<br>
+        <p>(A) □ (10+2)<sup>2</sup> = 10<sup>2</sup> + 2<sup>2</sup><br>
         改正：<span class="ans-reveal"><span class="ans-text">【錯誤】應為 10² + 2×10×2 + 2² = 144</span></span></p>
         
-        <p>(B) $\square (10+3)^2 = 10^2 + 3 \times 10 + 3^2$<br>
+        <p>(B) □ (10+3)<sup>2</sup> = 10<sup>2</sup> + 3 × 10 + 3<sup>2</sup><br>
         改正：<span class="ans-reveal"><span class="ans-text">【錯誤】應為 10² + 2×10×3 + 3² = 169</span></span></p>
         
-        <p>(C) $\square (10+4)^2 = 10^2 + 2 \times 10 \times 4 + 4$<br>
+        <p>(C) □ (10+4)<sup>2</sup> = 10<sup>2</sup> + 2 × 10 × 4 + 4<br>
         改正：<span class="ans-reveal"><span class="ans-text">【錯誤】最後一項應為 4² = 16</span></span></p>
       </div>
     </div>
@@ -830,17 +919,17 @@
     <div style="display:flex; gap:20px;">
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(1) $708^2$</strong><br>
-        $= (700 + 8)^2$<br>
-        $= 700^2 + 2 \times 700 \times 8 + 8^2$<br>
-        $= 490000 + 11200 + 64 = $ <span class="ans-reveal"><span class="ans-text">501264</span></span>
+        <strong>(1) 708<sup>2</sup></strong><br>
+        = (700 + 8)<sup>2</sup><br>
+        = 700<sup>2</sup> + 2 × 700 × 8 + 8<sup>2</sup><br>
+        = 490000 + 11200 + 64 =  <span class="ans-reveal"><span class="ans-text">501264</span></span>
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(2) $10.5^2$</strong><br>
-        $= (10 + 0.5)^2$<br>
-        $= 10^2 + 2 \times 10 \times 0.5 + 0.5^2$<br>
-        $= 100 + 10 + 0.25 = $ <span class="ans-reveal"><span class="ans-text">110.25</span></span>
+        <strong>(2) 10.5<sup>2</sup></strong><br>
+        = (10 + 0.5)<sup>2</sup><br>
+        = 10<sup>2</sup> + 2 × 10 × 0.5 + 0.5<sup>2</sup><br>
+        = 100 + 10 + 0.25 =  <span class="ans-reveal"><span class="ans-text">110.25</span></span>
       </div>
     </div>
   </div>
@@ -854,17 +943,17 @@
     <div class="card">
       <p><strong>1. 運用和的平方公式計算各題（請寫出算式）：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $302^2$</strong><br>
-        $= (300+2)^2 = 300^2 + 2 \times 300 \times 2 + 2^2$<br>
-        $= 90000 + 1200 + 4 = $ <span class="ans-reveal"><span class="ans-text">91204</span></span></p>
+        <p><strong>(1) 302<sup>2</sup></strong><br>
+        = (300+2)<sup>2</sup> = 300<sup>2</sup> + 2 × 300 × 2 + 2<sup>2</sup><br>
+        = 90000 + 1200 + 4 =  <span class="ans-reveal"><span class="ans-text">91204</span></span></p>
         
-        <p><strong>(2) $405^2$</strong><br>
-        $= (400+5)^2 = 400^2 + 2 \times 400 \times 5 + 5^2$<br>
-        $= 160000 + 4000 + 25 = $ <span class="ans-reveal"><span class="ans-text">164025</span></span></p>
+        <p><strong>(2) 405<sup>2</sup></strong><br>
+        = (400+5)<sup>2</sup> = 400<sup>2</sup> + 2 × 400 × 5 + 5<sup>2</sup><br>
+        = 160000 + 4000 + 25 =  <span class="ans-reveal"><span class="ans-text">164025</span></span></p>
         
-        <p><strong>(3) $104^2$</strong><br>
-        $= (100+4)^2 = 100^2 + 2 \times 100 \times 4 + 4^2$<br>
-        $= 10000 + 800 + 16 = $ <span class="ans-reveal"><span class="ans-text">10816</span></span></p>
+        <p><strong>(3) 104<sup>2</sup></strong><br>
+        = (100+4)<sup>2</sup> = 100<sup>2</sup> + 2 × 100 × 4 + 4<sup>2</sup><br>
+        = 10000 + 800 + 16 =  <span class="ans-reveal"><span class="ans-text">10816</span></span></p>
       </div>
     </div>
 
@@ -872,17 +961,17 @@
     <div class="card">
       <p><strong>2. 運用和的平方公式計算各題（請寫出算式）：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $10.7^2$</strong><br>
-        $= (10+0.7)^2 = 10^2 + 2 \times 10 \times 0.7 + 0.7^2$<br>
-        $= 100 + 14 + 0.49 = $ <span class="ans-reveal"><span class="ans-text">114.49</span></span></p>
+        <p><strong>(1) 10.7<sup>2</sup></strong><br>
+        = (10+0.7)<sup>2</sup> = 10<sup>2</sup> + 2 × 10 × 0.7 + 0.7<sup>2</sup><br>
+        = 100 + 14 + 0.49 =  <span class="ans-reveal"><span class="ans-text">114.49</span></span></p>
         
-        <p><strong>(2) $10.6^2$</strong><br>
-        $= (10+0.6)^2 = 10^2 + 2 \times 10 \times 0.6 + 0.6^2$<br>
-        $= 100 + 12 + 0.36 = $ <span class="ans-reveal"><span class="ans-text">112.36</span></span></p>
+        <p><strong>(2) 10.6<sup>2</sup></strong><br>
+        = (10+0.6)<sup>2</sup> = 10<sup>2</sup> + 2 × 10 × 0.6 + 0.6<sup>2</sup><br>
+        = 100 + 12 + 0.36 =  <span class="ans-reveal"><span class="ans-text">112.36</span></span></p>
         
-        <p><strong>(3) $100.8^2$</strong><br>
-        $= (100+0.8)^2 = 100^2 + 2 \times 100 \times 0.8 + 0.8^2$<br>
-        $= 10000 + 160 + 0.64 = $ <span class="ans-reveal"><span class="ans-text">10160.64</span></span></p>
+        <p><strong>(3) 100.8<sup>2</sup></strong><br>
+        = (100+0.8)<sup>2</sup> = 100<sup>2</sup> + 2 × 100 × 0.8 + 0.8<sup>2</sup><br>
+        = 10000 + 160 + 0.64 =  <span class="ans-reveal"><span class="ans-text">10160.64</span></span></p>
       </div>
     </div>
   </div>
@@ -905,18 +994,18 @@
     <div style="display:flex; gap:20px;">
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(1) $87^2 + 2 \times 87 \times 13 + 13^2$</strong><br>
-        $= (87 + 13)^2$<br>
-        $= 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span>
+        <strong>(1) 87<sup>2</sup> + 2 × 87 × 13 + 13<sup>2</sup></strong><br>
+        = (87 + 13)<sup>2</sup><br>
+        = 100<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">10000</span></span>
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(2) $(8\frac{1}{4})^2$</strong><br>
-        $= (8 + \frac{1}{4})^2 = 8^2 + 2 \times 8 \times \frac{1}{4} + (\frac{1}{4})^2$<br>
-        $= 64 + 4 + \frac{1}{16} = $ <span class="ans-reveal"><span class="ans-text">68\frac{1}{16}</span></span>
+        <strong>(2) (8<span class="frac"><span class="num">1</span><span class="denom">4</span></span>)<sup>2</sup></strong><br>
+        = (8 + <span class="frac"><span class="num">1</span><span class="denom">4</span></span>)<sup>2</sup> = 8<sup>2</sup> + 2 × 8 × <span class="frac"><span class="num">1</span><span class="denom">4</span></span> + (<span class="frac"><span class="num">1</span><span class="denom">4</span></span>)<sup>2</sup><br>
+        = 64 + 4 + <span class="frac"><span class="num">1</span><span class="denom">16</span></span> =  <span class="ans-reveal"><span class="ans-text">68<span class="frac"><span class="num">1</span><span class="denom">16</span></span></span></span>
       </div>
     </div>
-    <div class="side-note" style="margin-top:6px;">☆ 筆記：$87^2 + 26 \times 87 + 13^2$ 也可以逆用公式嗎？（$26 = 2 \times 13$，可以！）</div>
+    <div class="side-note" style="margin-top:6px;">☆ 筆記：87<sup>2</sup> + 26 × 87 + 13<sup>2</sup> 也可以逆用公式嗎？（26 = 2 × 13，可以！）</div>
   </div>
 
   <div class="quiz-header">
@@ -928,29 +1017,29 @@
     <div class="card">
       <p><strong>運用和的平方公式計算各題：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(1) $25^2 + 2 \times 25 \times 5 + 5^2$<br>
-        $= (25+5)^2 = 30^2 = $ <span class="ans-reveal"><span class="ans-text">900</span></span></p>
+        <p>(1) 25<sup>2</sup> + 2 × 25 × 5 + 5<sup>2</sup><br>
+        = (25+5)<sup>2</sup> = 30<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">900</span></span></p>
         
-        <p>(2) $98^2 + 2 \times 98 \times 2 + 2^2$<br>
-        $= (98+2)^2 = 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+        <p>(2) 98<sup>2</sup> + 2 × 98 × 2 + 2<sup>2</sup><br>
+        = (98+2)<sup>2</sup> = 100<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
         
-        <p>(3) $39^2 + 2 \times 39 \times 61 + 61^2$<br>
-        $= (39+61)^2 = 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+        <p>(3) 39<sup>2</sup> + 2 × 39 × 61 + 61<sup>2</sup><br>
+        = (39+61)<sup>2</sup> = 100<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
       </div>
     </div>
 
     <!-- 題 4-6 -->
     <div class="card">
-      <p><strong>將中間項拆出 $2 \times a \times b$：</strong></p>
+      <p><strong>將中間項拆出 2 × a × b：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(4) $78^2 + 24 \times 78 + 12^2$<br>
-        $= 78^2 + 2 \times $ <span class="ans-reveal"><span class="ans-text">12</span></span> $\times 78 + 12^2 = (78+12)^2 = $ <span class="ans-reveal"><span class="ans-text">8100</span></span></p>
+        <p>(4) 78<sup>2</sup> + 24 × 78 + 12<sup>2</sup><br>
+        = 78<sup>2</sup> + 2 ×  <span class="ans-reveal"><span class="ans-text">12</span></span> × 78 + 12<sup>2</sup> = (78+12)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">8100</span></span></p>
         
-        <p>(5) $93^2 + 14 \times 93 + 7^2$<br>
-        $= 93^2 + 2 \times $ <span class="ans-reveal"><span class="ans-text">7</span></span> $\times 93 + 7^2 = (93+7)^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+        <p>(5) 93<sup>2</sup> + 14 × 93 + 7<sup>2</sup><br>
+        = 93<sup>2</sup> + 2 ×  <span class="ans-reveal"><span class="ans-text">7</span></span> × 93 + 7<sup>2</sup> = (93+7)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
         
-        <p>(6) $47^2 + 6 \times 47 + 3^2$<br>
-        $= 47^2 + 2 \times $ <span class="ans-reveal"><span class="ans-text">3</span></span> $\times 47 + 3^2 = (47+3)^2 = $ <span class="ans-reveal"><span class="ans-text">2500</span></span></p>
+        <p>(6) 47<sup>2</sup> + 6 × 47 + 3<sup>2</sup><br>
+        = 47<sup>2</sup> + 2 ×  <span class="ans-reveal"><span class="ans-text">3</span></span> × 47 + 3<sup>2</sup> = (47+3)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">2500</span></span></p>
       </div>
     </div>
   </div>
@@ -966,18 +1055,18 @@
   
   <div class="concept-banner">
     <span class="concept-badge">概念 ❹</span>
-    <span class="concept-title">差的平方公式 $(a-b)^2 = a^2 - 2ab + b^2$</span>
+    <span class="concept-title">差的平方公式 (a-b)<sup>2</sup> = a<sup>2</sup> - 2ab + b<sup>2</sup></span>
   </div>
 
   <div class="box-note">
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div style="flex:1; padding-right:15px;">
-        <p>邊長為 $(a-b)$ 的正方形面積，可表示為：</p>
+        <p>邊長為 (a-b) 的正方形面積，可表示為：</p>
         <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
-          $(a-b)^2 = $ <span class="ans-reveal"><span class="ans-text">a^2 - 2ab + b^2</span></span>
+          (a-b)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">a<sup>2</sup> - 2ab + b<sup>2</sup></span></span>
         </p>
         <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
-          <strong>&lt;例&gt;</strong> $499^2 = (500 - $ <span class="ans-reveal"><span class="ans-text">1</span></span> $)^2$
+          <strong>&lt;例&gt;</strong> 499<sup>2</sup> = (500 -  <span class="ans-reveal"><span class="ans-text">1</span></span> )<sup>2</sup>
         </div>
       </div>
       <div style="width:230px; text-align:center;">
@@ -1000,7 +1089,7 @@
           
           <text x="130" y="55" font-size="11" fill="#c53030" font-weight="bold">＝ a² - 2ab + b²</text>
         </svg>
-        <div class="side-note">☆ 筆記：$(11-1)^2 = 11^2 - 1^2$ 對嗎？（錯！漏掉 $-2ab$）</div>
+        <div class="side-note">☆ 筆記：(11-1)<sup>2</sup> = 11<sup>2</sup> - 1<sup>2</sup> 對嗎？（錯！漏掉 -2ab）</div>
       </div>
     </div>
   </div>
@@ -1014,16 +1103,16 @@
     <div class="card">
       <p><strong>1. 運用差的平方公式計算各題：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(1) $(x-y)^2 = $ <span class="ans-reveal"><span class="ans-text">x^2 - 2xy + y^2</span></span></p>
-        <p>(2) $(c-d)^2 = $ <span class="ans-reveal"><span class="ans-text">c^2 - 2cd + d^2</span></span></p>
-        <p>(3) $(x-3)^2 = $ <span class="ans-reveal"><span class="ans-text">x^2 - 6x + 9</span></span></p>
-        <p>(4) $(y-4)^2 = $ <span class="ans-reveal"><span class="ans-text">y^2 - 8y + 16</span></span></p>
+        <p>(1) (x-y)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">x<sup>2</sup> - 2xy + y<sup>2</sup></span></span></p>
+        <p>(2) (c-d)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">c<sup>2</sup> - 2cd + d<sup>2</sup></span></span></p>
+        <p>(3) (x-3)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">x<sup>2</sup> - 6x + 9</span></span></p>
+        <p>(4) (y-4)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">y<sup>2</sup> - 8y + 16</span></span></p>
       </div>
       
       <p style="margin-top:6px;"><strong>2. 數字展開計算：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p>(1) $(20-3)^2 = $ <span class="ans-reveal"><span class="ans-text">20^2 - 2\times 20\times 3 + 3^2 = 400 - 120 + 9 = 289</span></span></p>
-        <p>(2) $(100-1)^2 = $ <span class="ans-reveal"><span class="ans-text">100^2 - 2\times 100\times 1 + 1^2 = 9801</span></span></p>
+        <p>(1) (20-3)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">20<sup>2</sup> - 2× 20× 3 + 3<sup>2</sup> = 400 - 120 + 9 = 289</span></span></p>
+        <p>(2) (100-1)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">100<sup>2</sup> - 2× 100× 1 + 1<sup>2</sup> = 9801</span></span></p>
       </div>
     </div>
 
@@ -1031,13 +1120,13 @@
     <div class="card">
       <p><strong>3. 判斷下列各式是否正確，若有錯誤請改正：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(A) $\square (10-3)^2 = 10^2 - 3^2$<br>
+        <p>(A) □ (10-3)<sup>2</sup> = 10<sup>2</sup> - 3<sup>2</sup><br>
         改正：<span class="ans-reveal"><span class="ans-text">【錯誤】應為 10² - 2×10×3 + 3² = 49</span></span></p>
         
-        <p>(B) $\square (20-5)^2 = 20^2 - 2 \times 20 \times 5 - 5^2$<br>
+        <p>(B) □ (20-5)<sup>2</sup> = 20<sup>2</sup> - 2 × 20 × 5 - 5<sup>2</sup><br>
         改正：<span class="ans-reveal"><span class="ans-text">【錯誤】最後一項應為 + 5²</span></span></p>
         
-        <p>(C) $\square (x-y)^2 = x^2 + 2xy - y^2$<br>
+        <p>(C) □ (x-y)<sup>2</sup> = x<sup>2</sup> + 2xy - y<sup>2</sup><br>
         改正：<span class="ans-reveal"><span class="ans-text">【錯誤】應為 x² - 2xy + y²</span></span></p>
       </div>
     </div>
@@ -1062,15 +1151,15 @@
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
         <strong>(1) 求邊長 98 的正方形面積：</strong><br>
-        $98 \times 98 = 98^2$<br>
-        $= (100 - 2)^2 = 100^2 - 2 \times 100 \times 2 + 2^2$<br>
-        $= 10000 - 400 + 4 = $ <span class="ans-reveal"><span class="ans-text">9604</span></span>
+        98 × 98 = 98<sup>2</sup><br>
+        = (100 - 2)<sup>2</sup> = 100<sup>2</sup> - 2 × 100 × 2 + 2<sup>2</sup><br>
+        = 10000 - 400 + 4 =  <span class="ans-reveal"><span class="ans-text">9604</span></span>
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(2) $98^2$</strong><br>
-        $= (100 - 2)^2$<br>
-        $= 10000 - 400 + 4 = $ <span class="ans-reveal"><span class="ans-text">9604</span></span>
+        <strong>(2) 98<sup>2</sup></strong><br>
+        = (100 - 2)<sup>2</sup><br>
+        = 10000 - 400 + 4 =  <span class="ans-reveal"><span class="ans-text">9604</span></span>
       </div>
     </div>
   </div>
@@ -1082,37 +1171,37 @@
   <div class="grid-2">
     <!-- 題 1 -->
     <div class="card">
-      <p><strong>1. 運用差的平方公式計算各題（拆成 $100-k$）：</strong></p>
+      <p><strong>1. 運用差的平方公式計算各題（拆成 100-k）：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $99^2$</strong><br>
-        $= (100-1)^2 = 100^2 - 2 \times 100 \times 1 + 1^2$<br>
-        $= 10000 - 200 + 1 = $ <span class="ans-reveal"><span class="ans-text">9801</span></span></p>
+        <p><strong>(1) 99<sup>2</sup></strong><br>
+        = (100-1)<sup>2</sup> = 100<sup>2</sup> - 2 × 100 × 1 + 1<sup>2</sup><br>
+        = 10000 - 200 + 1 =  <span class="ans-reveal"><span class="ans-text">9801</span></span></p>
         
-        <p><strong>(2) $96^2$</strong><br>
-        $= (100-4)^2 = 100^2 - 2 \times 100 \times 4 + 4^2$<br>
-        $= 10000 - 800 + 16 = $ <span class="ans-reveal"><span class="ans-text">9216</span></span></p>
+        <p><strong>(2) 96<sup>2</sup></strong><br>
+        = (100-4)<sup>2</sup> = 100<sup>2</sup> - 2 × 100 × 4 + 4<sup>2</sup><br>
+        = 10000 - 800 + 16 =  <span class="ans-reveal"><span class="ans-text">9216</span></span></p>
         
-        <p><strong>(3) $94^2$</strong><br>
-        $= (100-6)^2 = 100^2 - 2 \times 100 \times 6 + 6^2$<br>
-        $= 10000 - 1200 + 36 = $ <span class="ans-reveal"><span class="ans-text">8836</span></span></p>
+        <p><strong>(3) 94<sup>2</sup></strong><br>
+        = (100-6)<sup>2</sup> = 100<sup>2</sup> - 2 × 100 × 6 + 6<sup>2</sup><br>
+        = 10000 - 1200 + 36 =  <span class="ans-reveal"><span class="ans-text">8836</span></span></p>
       </div>
     </div>
 
     <!-- 題 2 -->
     <div class="card">
-      <p><strong>2. 運用差的平方公式計算各題（拆成 $200-k$）：</strong></p>
+      <p><strong>2. 運用差的平方公式計算各題（拆成 200-k）：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $199^2$</strong><br>
-        $= (200-1)^2 = 200^2 - 2 \times 200 \times 1 + 1^2$<br>
-        $= 40000 - 400 + 1 = $ <span class="ans-reveal"><span class="ans-text">39601</span></span></p>
+        <p><strong>(1) 199<sup>2</sup></strong><br>
+        = (200-1)<sup>2</sup> = 200<sup>2</sup> - 2 × 200 × 1 + 1<sup>2</sup><br>
+        = 40000 - 400 + 1 =  <span class="ans-reveal"><span class="ans-text">39601</span></span></p>
         
-        <p><strong>(2) $198^2$</strong><br>
-        $= (200-2)^2 = 200^2 - 2 \times 200 \times 2 + 2^2$<br>
-        $= 40000 - 800 + 4 = $ <span class="ans-reveal"><span class="ans-text">39204</span></span></p>
+        <p><strong>(2) 198<sup>2</sup></strong><br>
+        = (200-2)<sup>2</sup> = 200<sup>2</sup> - 2 × 200 × 2 + 2<sup>2</sup><br>
+        = 40000 - 800 + 4 =  <span class="ans-reveal"><span class="ans-text">39204</span></span></p>
         
-        <p><strong>(3) $195^2$</strong><br>
-        $= (200-5)^2 = 200^2 - 2 \times 200 \times 5 + 5^2$<br>
-        $= 40000 - 2000 + 25 = $ <span class="ans-reveal"><span class="ans-text">38025</span></span></p>
+        <p><strong>(3) 195<sup>2</sup></strong><br>
+        = (200-5)<sup>2</sup> = 200<sup>2</sup> - 2 × 200 × 5 + 5<sup>2</sup><br>
+        = 40000 - 2000 + 25 =  <span class="ans-reveal"><span class="ans-text">38025</span></span></p>
       </div>
     </div>
   </div>
@@ -1135,17 +1224,17 @@
     <div style="display:flex; gap:20px;">
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(1) $997^2$</strong><br>
-        $= (1000 - 3)^2$<br>
-        $= 1000^2 - 2 \times 1000 \times 3 + 3^2$<br>
-        $= 1000000 - 6000 + 9 = $ <span class="ans-reveal"><span class="ans-text">994009</span></span>
+        <strong>(1) 997<sup>2</sup></strong><br>
+        = (1000 - 3)<sup>2</sup><br>
+        = 1000<sup>2</sup> - 2 × 1000 × 3 + 3<sup>2</sup><br>
+        = 1000000 - 6000 + 9 =  <span class="ans-reveal"><span class="ans-text">994009</span></span>
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(2) $8.9^2$</strong><br>
-        $= (9 - 0.1)^2$<br>
-        $= 9^2 - 2 \times 9 \times 0.1 + 0.1^2$<br>
-        $= 81 - 1.8 + 0.01 = $ <span class="ans-reveal"><span class="ans-text">79.21</span></span>
+        <strong>(2) 8.9<sup>2</sup></strong><br>
+        = (9 - 0.1)<sup>2</sup><br>
+        = 9<sup>2</sup> - 2 × 9 × 0.1 + 0.1<sup>2</sup><br>
+        = 81 - 1.8 + 0.01 =  <span class="ans-reveal"><span class="ans-text">79.21</span></span>
       </div>
     </div>
   </div>
@@ -1157,29 +1246,29 @@
   <div class="grid-2">
     <!-- 題 1-2 -->
     <div class="card">
-      <p><strong>運用差的平方公式計算（拆成 $1000-k$）：</strong></p>
+      <p><strong>運用差的平方公式計算（拆成 1000-k）：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p><strong>(1) $999^2$</strong><br>
-        $= (1000 - 1)^2 = 1000^2 - 2 \times 1000 \times 1 + 1^2$<br>
-        $= 1000000 - 2000 + 1 = $ <span class="ans-reveal"><span class="ans-text">998001</span></span></p>
+        <p><strong>(1) 999<sup>2</sup></strong><br>
+        = (1000 - 1)<sup>2</sup> = 1000<sup>2</sup> - 2 × 1000 × 1 + 1<sup>2</sup><br>
+        = 1000000 - 2000 + 1 =  <span class="ans-reveal"><span class="ans-text">998001</span></span></p>
         
-        <p><strong>(2) $998^2$</strong><br>
-        $= (1000 - 2)^2 = 1000^2 - 2 \times 1000 \times 2 + 2^2$<br>
-        $= 1000000 - 4000 + 4 = $ <span class="ans-reveal"><span class="ans-text">996004</span></span></p>
+        <p><strong>(2) 998<sup>2</sup></strong><br>
+        = (1000 - 2)<sup>2</sup> = 1000<sup>2</sup> - 2 × 1000 × 2 + 2<sup>2</sup><br>
+        = 1000000 - 4000 + 4 =  <span class="ans-reveal"><span class="ans-text">996004</span></span></p>
       </div>
     </div>
 
     <!-- 題 3-4 -->
     <div class="card">
-      <p><strong>運用差的平方公式計算（拆成 $1000-k$）：</strong></p>
+      <p><strong>運用差的平方公式計算（拆成 1000-k）：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p><strong>(3) $996^2$</strong><br>
-        $= (1000 - 4)^2 = 1000^2 - 2 \times 1000 \times 4 + 4^2$<br>
-        $= 1000000 - 8000 + 16 = $ <span class="ans-reveal"><span class="ans-text">992016</span></span></p>
+        <p><strong>(3) 996<sup>2</sup></strong><br>
+        = (1000 - 4)<sup>2</sup> = 1000<sup>2</sup> - 2 × 1000 × 4 + 4<sup>2</sup><br>
+        = 1000000 - 8000 + 16 =  <span class="ans-reveal"><span class="ans-text">992016</span></span></p>
         
-        <p><strong>(4) $995^2$</strong><br>
-        $= (1000 - 5)^2 = 1000^2 - 2 \times 1000 \times 5 + 5^2$<br>
-        $= 1000000 - 10000 + 25 = $ <span class="ans-reveal"><span class="ans-text">990025</span></span></p>
+        <p><strong>(4) 995<sup>2</sup></strong><br>
+        = (1000 - 5)<sup>2</sup> = 1000<sup>2</sup> - 2 × 1000 × 5 + 5<sup>2</sup><br>
+        = 1000000 - 10000 + 25 =  <span class="ans-reveal"><span class="ans-text">990025</span></span></p>
       </div>
     </div>
   </div>
@@ -1202,18 +1291,18 @@
     <div style="display:flex; gap:20px;">
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(1) $567^2 - 2 \times 567 \times 67 + 67^2$</strong><br>
-        $= (567 - 67)^2$<br>
-        $= 500^2 = $ <span class="ans-reveal"><span class="ans-text">250000</span></span>
+        <strong>(1) 567<sup>2</sup> - 2 × 567 × 67 + 67<sup>2</sup></strong><br>
+        = (567 - 67)<sup>2</sup><br>
+        = 500<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">250000</span></span>
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
-        <strong>(2) $(9\frac{1}{2})^2$</strong><br>
-        $= (10 - \frac{1}{2})^2 = 10^2 - 2 \times 10 \times \frac{1}{2} + (\frac{1}{2})^2$<br>
-        $= 100 - 10 + \frac{1}{4} = $ <span class="ans-reveal"><span class="ans-text">90\frac{1}{4}</span></span>
+        <strong>(2) (9<span class="frac"><span class="num">1</span><span class="denom">2</span></span>)<sup>2</sup></strong><br>
+        = (10 - <span class="frac"><span class="num">1</span><span class="denom">2</span></span>)<sup>2</sup> = 10<sup>2</sup> - 2 × 10 × <span class="frac"><span class="num">1</span><span class="denom">2</span></span> + (<span class="frac"><span class="num">1</span><span class="denom">2</span></span>)<sup>2</sup><br>
+        = 100 - 10 + <span class="frac"><span class="num">1</span><span class="denom">4</span></span> =  <span class="ans-reveal"><span class="ans-text">90<span class="frac"><span class="num">1</span><span class="denom">4</span></span></span></span>
       </div>
     </div>
-    <div class="side-note" style="margin-top:6px;">☆ 筆記：$(9\frac{1}{2})^2$ 中的 $9\frac{1}{2}$ 可以改成 $(9+\frac{1}{2})$ 嗎？（可以！結果完全一樣）</div>
+    <div class="side-note" style="margin-top:6px;">☆ 筆記：(9<span class="frac"><span class="num">1</span><span class="denom">2</span></span>)<sup>2</sup> 中的 9<span class="frac"><span class="num">1</span><span class="denom">2</span></span> 可以改成 (9+<span class="frac"><span class="num">1</span><span class="denom">2</span></span>) 嗎？（可以！結果完全一樣）</div>
   </div>
 
   <div class="quiz-header">
@@ -1225,29 +1314,29 @@
     <div class="card">
       <p><strong>逆用差的平方公式計算各題：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(1) $108^2 - 2 \times 108 \times 8 + 8^2$<br>
-        $= (108 - 8)^2 = 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+        <p>(1) 108<sup>2</sup> - 2 × 108 × 8 + 8<sup>2</sup><br>
+        = (108 - 8)<sup>2</sup> = 100<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
         
-        <p>(2) $123^2 - 2 \times 123 \times 23 + 23^2$<br>
-        $= (123 - 23)^2 = 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+        <p>(2) 123<sup>2</sup> - 2 × 123 × 23 + 23<sup>2</sup><br>
+        = (123 - 23)<sup>2</sup> = 100<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
         
-        <p>(3) $97^2 - 2 \times 97 \times 47 + 47^2$<br>
-        $= (97 - 47)^2 = 50^2 = $ <span class="ans-reveal"><span class="ans-text">2500</span></span></p>
+        <p>(3) 97<sup>2</sup> - 2 × 97 × 47 + 47<sup>2</sup><br>
+        = (97 - 47)<sup>2</sup> = 50<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">2500</span></span></p>
       </div>
     </div>
 
     <!-- 題 4-6 -->
     <div class="card">
-      <p><strong>將中間項拆出 $2 \times a \times b$：</strong></p>
+      <p><strong>將中間項拆出 2 × a × b：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(4) $53^2 - 6 \times 53 + 3^2$<br>
-        $= 53^2 - 2 \times $ <span class="ans-reveal"><span class="ans-text">3</span></span> $\times 53 + 3^2 = (53-3)^2 = $ <span class="ans-reveal"><span class="ans-text">2500</span></span></p>
+        <p>(4) 53<sup>2</sup> - 6 × 53 + 3<sup>2</sup><br>
+        = 53<sup>2</sup> - 2 ×  <span class="ans-reveal"><span class="ans-text">3</span></span> × 53 + 3<sup>2</sup> = (53-3)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">2500</span></span></p>
         
-        <p>(5) $42^2 - 4 \times 42 + 2^2$<br>
-        $= 42^2 - 2 \times $ <span class="ans-reveal"><span class="ans-text">2</span></span> $\times 42 + 2^2 = (42-2)^2 = $ <span class="ans-reveal"><span class="ans-text">1600</span></span></p>
+        <p>(5) 42<sup>2</sup> - 4 × 42 + 2<sup>2</sup><br>
+        = 42<sup>2</sup> - 2 ×  <span class="ans-reveal"><span class="ans-text">2</span></span> × 42 + 2<sup>2</sup> = (42-2)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">1600</span></span></p>
         
-        <p>(6) $75^2 - 10 \times 75 + 5^2$<br>
-        $= 75^2 - 2 \times $ <span class="ans-reveal"><span class="ans-text">5</span></span> $\times 75 + 5^2 = (75-5)^2 = $ <span class="ans-reveal"><span class="ans-text">4900</span></span></p>
+        <p>(6) 75<sup>2</sup> - 10 × 75 + 5<sup>2</sup><br>
+        = 75<sup>2</sup> - 2 ×  <span class="ans-reveal"><span class="ans-text">5</span></span> × 75 + 5<sup>2</sup> = (75-5)<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">4900</span></span></p>
       </div>
     </div>
   </div>
@@ -1263,7 +1352,7 @@
   
   <div class="concept-banner">
     <span class="concept-badge">概念 ❺</span>
-    <span class="concept-title">平方差公式 $(a+b)(a-b) = a^2 - b^2$</span>
+    <span class="concept-title">平方差公式 (a+b)(a-b) = a<sup>2</sup> - b<sup>2</sup></span>
   </div>
 
   <div class="box-note">
@@ -1271,19 +1360,19 @@
       <div style="flex:1; padding-right:15px;">
         <p>一加一減乘起來，中間項相互抵消：</p>
         <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
-          $(a+b)(a-b) = $ <span class="ans-reveal"><span class="ans-text">a^2 - b^2</span></span>
+          (a+b)(a-b) =  <span class="ans-reveal"><span class="ans-text">a<sup>2</sup> - b<sup>2</sup></span></span>
         </p>
         <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
-          <strong>&lt;例&gt;</strong> $88 \times 72 = (80 + 8)(80 - 8)$<br>
-          $= 80^2 - 8^2 = 6400 - 64 = $ <span class="ans-reveal"><span class="ans-text">6336</span></span>
+          <strong>&lt;例&gt;</strong> 88 × 72 = (80 + 8)(80 - 8)<br>
+          = 80<sup>2</sup> - 8<sup>2</sup> = 6400 - 64 =  <span class="ans-reveal"><span class="ans-text">6336</span></span>
         </div>
       </div>
       <div style="width:200px; text-align:center;">
         <div style="background:#edf2f7; border-radius:8px; padding:8px 10px; border:1px dashed #cbd5e0;">
           <strong>口訣心法：</strong><br>
-          找兩數的「平均數」為 $a$！<br>
-          $88$ 與 $72$ 的中間是 $80$<br>
-          $(80+8)(80-8) = 80^2 - 8^2$
+          找兩數的「平均數」為 a！<br>
+          88 與 72 的中間是 80<br>
+          (80+8)(80-8) = 80<sup>2</sup> - 8<sup>2</sup>
         </div>
         <div class="side-note" style="margin-top:6px;">☆ 筆記：平方減平方，沒有中間項！</div>
       </div>
@@ -1299,10 +1388,10 @@
     <div class="card">
       <p><strong>1. 運用平方差公式計算下列各式：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(1) $(x+y)(x-y) = $ <span class="ans-reveal"><span class="ans-text">x^2 - y^2</span></span></p>
-        <p>(2) $(c+d)(c-d) = $ <span class="ans-reveal"><span class="ans-text">c^2 - d^2</span></span></p>
-        <p>(3) $(x+3)(x-3) = $ <span class="ans-reveal"><span class="ans-text">x^2 - 9</span></span></p>
-        <p>(4) $(y+4)(y-4) = $ <span class="ans-reveal"><span class="ans-text">y^2 - 16</span></span></p>
+        <p>(1) (x+y)(x-y) =  <span class="ans-reveal"><span class="ans-text">x<sup>2</sup> - y<sup>2</sup></span></span></p>
+        <p>(2) (c+d)(c-d) =  <span class="ans-reveal"><span class="ans-text">c<sup>2</sup> - d<sup>2</sup></span></span></p>
+        <p>(3) (x+3)(x-3) =  <span class="ans-reveal"><span class="ans-text">x<sup>2</sup> - 9</span></span></p>
+        <p>(4) (y+4)(y-4) =  <span class="ans-reveal"><span class="ans-text">y<sup>2</sup> - 16</span></span></p>
       </div>
     </div>
 
@@ -1310,17 +1399,17 @@
     <div class="card">
       <p><strong>2. 運用平方差公式計算數字乘積：</strong></p>
       <div style="margin:4px 0; line-height:1.8;">
-        <p><strong>(1) $52 \times 48$</strong><br>
-        $= (50 + 2)(50 - 2) = 50^2 - 2^2$<br>
-        $= 2500 - 4 = $ <span class="ans-reveal"><span class="ans-text">2496</span></span></p>
+        <p><strong>(1) 52 × 48</strong><br>
+        = (50 + 2)(50 - 2) = 50<sup>2</sup> - 2<sup>2</sup><br>
+        = 2500 - 4 =  <span class="ans-reveal"><span class="ans-text">2496</span></span></p>
         
-        <p><strong>(2) $108 \times 92$</strong><br>
-        $= (100 + 8)(100 - 8) = 100^2 - 8^2$<br>
-        $= 10000 - 64 = $ <span class="ans-reveal"><span class="ans-text">9936</span></span></p>
+        <p><strong>(2) 108 × 92</strong><br>
+        = (100 + 8)(100 - 8) = 100<sup>2</sup> - 8<sup>2</sup><br>
+        = 10000 - 64 =  <span class="ans-reveal"><span class="ans-text">9936</span></span></p>
         
-        <p><strong>(3) $65 \times 55$</strong><br>
-        $= (60 + 5)(60 - 5) = 60^2 - 5^2$<br>
-        $= 3600 - 25 = $ <span class="ans-reveal"><span class="ans-text">3575</span></span></p>
+        <p><strong>(3) 65 × 55</strong><br>
+        = (60 + 5)(60 - 5) = 60<sup>2</sup> - 5<sup>2</sup><br>
+        = 3600 - 25 =  <span class="ans-reveal"><span class="ans-text">3575</span></span></p>
       </div>
     </div>
   </div>
@@ -1336,19 +1425,19 @@
   
   <div class="concept-banner">
     <span class="concept-badge">概念 ❻</span>
-    <span class="concept-title">平方差公式 $a^2 - b^2 = (a+b)(a-b)$（幾何拼貼）</span>
+    <span class="concept-title">平方差公式 a<sup>2</sup> - b<sup>2</sup> = (a+b)(a-b)（幾何拼貼）</span>
   </div>
 
   <div class="box-note">
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div style="flex:1; padding-right:15px;">
-        <p>大正方形面積 $a^2$ 挖掉邊長 $b$ 的小正方形 $b^2$：</p>
+        <p>大正方形面積 a<sup>2</sup> 挖掉邊長 b 的小正方形 b<sup>2</sup>：</p>
         <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
-          $a^2 - b^2 = $ <span class="ans-reveal"><span class="ans-text">(a+b)(a-b)</span></span>
+          a<sup>2</sup> - b<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">(a+b)(a-b)</span></span>
         </p>
         <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
-          <strong>&lt;例&gt;</strong> $83^2 - 17^2 = (83 + 17)(83 - 17)$<br>
-          $= 100 \times 66 = $ <span class="ans-reveal"><span class="ans-text">6600</span></span>
+          <strong>&lt;例&gt;</strong> 83<sup>2</sup> - 17<sup>2</sup> = (83 + 17)(83 - 17)<br>
+          = 100 × 66 =  <span class="ans-reveal"><span class="ans-text">6600</span></span>
         </div>
       </div>
       <div style="width:240px; text-align:center;">
@@ -1372,7 +1461,7 @@
           <text x="165" y="18" font-size="9" text-anchor="middle">b</text>
           <text x="182" y="52" font-size="9">a-b</text>
         </svg>
-        <div class="side-note">☆ 筆記：將剩餘塊「擺直貼上」，長 $(a+b)$ 寬 $(a-b)$</div>
+        <div class="side-note">☆ 筆記：將剩餘塊「擺直貼上」，長 (a+b) 寬 (a-b)</div>
       </div>
     </div>
   </div>
@@ -1386,11 +1475,11 @@
     <div class="card">
       <p><strong>1. 運用平方差公式計算長方形面積：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p>(1) $x^2 - y^2 = $ <span class="ans-reveal"><span class="ans-text">(x+y)(x-y)</span></span></p>
-        <p>(2) $95^2 - 5^2 = (95+5)(95-5)$<br>
-        $= 100 \times 90 = $ <span class="ans-reveal"><span class="ans-text">9000</span></span></p>
-        <p>(3) $98^2 - 2^2 = (98+2)(98-2)$<br>
-        $= 100 \times 96 = $ <span class="ans-reveal"><span class="ans-text">9600</span></span></p>
+        <p>(1) x<sup>2</sup> - y<sup>2</sup> =  <span class="ans-reveal"><span class="ans-text">(x+y)(x-y)</span></span></p>
+        <p>(2) 95<sup>2</sup> - 5<sup>2</sup> = (95+5)(95-5)<br>
+        = 100 × 90 =  <span class="ans-reveal"><span class="ans-text">9000</span></span></p>
+        <p>(3) 98<sup>2</sup> - 2<sup>2</sup> = (98+2)(98-2)<br>
+        = 100 × 96 =  <span class="ans-reveal"><span class="ans-text">9600</span></span></p>
       </div>
     </div>
 
@@ -1398,14 +1487,14 @@
     <div class="card">
       <p><strong>2. 運用平方差公式計算各題：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p><strong>(1) $85^2 - 15^2$</strong><br>
-        $= (85+15)(85-15) = 100 \times 70 = $ <span class="ans-reveal"><span class="ans-text">7000</span></span></p>
+        <p><strong>(1) 85<sup>2</sup> - 15<sup>2</sup></strong><br>
+        = (85+15)(85-15) = 100 × 70 =  <span class="ans-reveal"><span class="ans-text">7000</span></span></p>
         
-        <p><strong>(2) $93^2 - 7^2$</strong><br>
-        $= (93+7)(93-7) = 100 \times 86 = $ <span class="ans-reveal"><span class="ans-text">8600</span></span></p>
+        <p><strong>(2) 93<sup>2</sup> - 7<sup>2</sup></strong><br>
+        = (93+7)(93-7) = 100 × 86 =  <span class="ans-reveal"><span class="ans-text">8600</span></span></p>
         
-        <p><strong>(3) $66^2 - 34^2$</strong><br>
-        $= (66+34)(66-34) = 100 \times 32 = $ <span class="ans-reveal"><span class="ans-text">3200</span></span></p>
+        <p><strong>(3) 66<sup>2</sup> - 34<sup>2</sup></strong><br>
+        = (66+34)(66-34) = 100 × 32 =  <span class="ans-reveal"><span class="ans-text">3200</span></span></p>
       </div>
     </div>
   </div>
@@ -1428,24 +1517,24 @@
     <div style="display:flex; gap:15px;">
       <!-- 例 1 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px;">
-        <strong>(1) $103 \times 97$</strong><br>
-        $= (100+3)(100-3)$<br>
-        $= 100^2 - 3^2$<br>
-        $= 10000 - 9 = $ <span class="ans-reveal"><span class="ans-text">9991</span></span>
+        <strong>(1) 103 × 97</strong><br>
+        = (100+3)(100-3)<br>
+        = 100<sup>2</sup> - 3<sup>2</sup><br>
+        = 10000 - 9 =  <span class="ans-reveal"><span class="ans-text">9991</span></span>
       </div>
       <!-- 例 2 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px;">
-        <strong>(2) $299^2 - 99^2$</strong><br>
-        $= (299+99)(299-99)$<br>
-        $= 398 \times 200$<br>
-        $= $ <span class="ans-reveal"><span class="ans-text">79600</span></span>
+        <strong>(2) 299<sup>2</sup> - 99<sup>2</sup></strong><br>
+        = (299+99)(299-99)<br>
+        = 398 × 200<br>
+        =  <span class="ans-reveal"><span class="ans-text">79600</span></span>
       </div>
       <!-- 例 3 -->
       <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px;">
-        <strong>(3) $2\frac{1}{3} \times 1\frac{2}{3}$</strong><br>
-        $= (2+\frac{1}{3})(2-\frac{1}{3})$<br>
-        $= 2^2 - (\frac{1}{3})^2$<br>
-        $= 4 - \frac{1}{9} = $ <span class="ans-reveal"><span class="ans-text">3\frac{8}{9}</span></span>
+        <strong>(3) 2<span class="frac"><span class="num">1</span><span class="denom">3</span></span> × 1<span class="frac"><span class="num">2</span><span class="denom">3</span></span></strong><br>
+        = (2+<span class="frac"><span class="num">1</span><span class="denom">3</span></span>)(2-<span class="frac"><span class="num">1</span><span class="denom">3</span></span>)<br>
+        = 2<sup>2</sup> - (<span class="frac"><span class="num">1</span><span class="denom">3</span></span>)<sup>2</sup><br>
+        = 4 - <span class="frac"><span class="num">1</span><span class="denom">9</span></span> =  <span class="ans-reveal"><span class="ans-text">3<span class="frac"><span class="num">8</span><span class="denom">9</span></span></span></span>
       </div>
     </div>
   </div>
@@ -1459,14 +1548,14 @@
     <div class="card">
       <p><strong>1. 運用平方差公式計算乘積：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p><strong>(1) $102 \times 98$</strong><br>
-        $= (100+2)(100-2) = 100^2 - 2^2 = 10000 - 4 = $ <span class="ans-reveal"><span class="ans-text">9996</span></span></p>
+        <p><strong>(1) 102 × 98</strong><br>
+        = (100+2)(100-2) = 100<sup>2</sup> - 2<sup>2</sup> = 10000 - 4 =  <span class="ans-reveal"><span class="ans-text">9996</span></span></p>
         
-        <p><strong>(2) $105 \times 95$</strong><br>
-        $= (100+5)(100-5) = 100^2 - 5^2 = 10000 - 25 = $ <span class="ans-reveal"><span class="ans-text">9975</span></span></p>
+        <p><strong>(2) 105 × 95</strong><br>
+        = (100+5)(100-5) = 100<sup>2</sup> - 5<sup>2</sup> = 10000 - 25 =  <span class="ans-reveal"><span class="ans-text">9975</span></span></p>
         
-        <p><strong>(3) $10\frac{1}{2} \times 9\frac{1}{2}$</strong><br>
-        $= (10+\frac{1}{2})(10-\frac{1}{2}) = 10^2 - (\frac{1}{2})^2 = 100 - \frac{1}{4} = $ <span class="ans-reveal"><span class="ans-text">99\frac{3}{4}</span></span></p>
+        <p><strong>(3) 10<span class="frac"><span class="num">1</span><span class="denom">2</span></span> × 9<span class="frac"><span class="num">1</span><span class="denom">2</span></span></strong><br>
+        = (10+<span class="frac"><span class="num">1</span><span class="denom">2</span></span>)(10-<span class="frac"><span class="num">1</span><span class="denom">2</span></span>) = 10<sup>2</sup> - (<span class="frac"><span class="num">1</span><span class="denom">2</span></span>)<sup>2</sup> = 100 - <span class="frac"><span class="num">1</span><span class="denom">4</span></span> =  <span class="ans-reveal"><span class="ans-text">99<span class="frac"><span class="num">3</span><span class="denom">4</span></span></span></span></p>
       </div>
     </div>
 
@@ -1474,14 +1563,14 @@
     <div class="card">
       <p><strong>2. 運用平方差公式計算兩數平方差：</strong></p>
       <div style="margin:4px 0; line-height:1.9;">
-        <p><strong>(1) $19^2 - 1^2$</strong><br>
-        $= (19+1)(19-1) = 20 \times 18 = $ <span class="ans-reveal"><span class="ans-text">360</span></span></p>
+        <p><strong>(1) 19<sup>2</sup> - 1<sup>2</sup></strong><br>
+        = (19+1)(19-1) = 20 × 18 =  <span class="ans-reveal"><span class="ans-text">360</span></span></p>
         
-        <p><strong>(2) $123^2 - 23^2$</strong><br>
-        $= (123+23)(123-23) = 146 \times 100 = $ <span class="ans-reveal"><span class="ans-text">14600</span></span></p>
+        <p><strong>(2) 123<sup>2</sup> - 23<sup>2</sup></strong><br>
+        = (123+23)(123-23) = 146 × 100 =  <span class="ans-reveal"><span class="ans-text">14600</span></span></p>
         
-        <p><strong>(3) $(3\frac{1}{2})^2 - (2\frac{1}{2})^2$</strong><br>
-        $= (3.5+2.5)(3.5-2.5) = 6 \times 1 = $ <span class="ans-reveal"><span class="ans-text">6</span></span></p>
+        <p><strong>(3) (3<span class="frac"><span class="num">1</span><span class="denom">2</span></span>)<sup>2</sup> - (2<span class="frac"><span class="num">1</span><span class="denom">2</span></span>)<sup>2</sup></strong><br>
+        = (3.5+2.5)(3.5-2.5) = 6 × 1 =  <span class="ans-reveal"><span class="ans-text">6</span></span></p>
       </div>
     </div>
   </div>
