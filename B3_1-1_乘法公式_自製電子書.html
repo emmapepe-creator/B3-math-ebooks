@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B3 1-1 乘法公式 - 雙模式教學互動電子書</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 20px 0 60px 0;
+    background: #e2e8f0;
+    font-family: "BiauKai", "DFKai-SB", "標楷體", "Times New Roman", serif;
+    font-size: 14pt;
+    line-height: 1.5;
+    color: #1a202c;
+  }
+
+  /* A4 Page Container */
+  .page {
+    width: 210mm;
+    height: 275mm;
+    max-height: 275mm;
+    margin: 15px auto;
+    padding: 12mm 15mm 10mm 15mm;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  /* Drawing Canvas */
+  .drawing-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+  }
+  body.drawing-mode .drawing-canvas {
+    pointer-events: auto;
+    cursor: crosshair;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #2b6cb0;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+  .unit-tag {
+    font-size: 16pt;
+    font-weight: bold;
+    color: #2b6cb0;
+    letter-spacing: 1px;
+  }
+  .page-num {
+    font-size: 13pt;
+    color: #718096;
+    font-weight: bold;
+  }
+
+  /* Banners */
+  .concept-banner, .example-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #edf2f7, #f7fafc);
+    border-left: 5px solid #2b6cb0;
+    padding: 4px 10px;
+    margin-bottom: 8px;
+    border-radius: 0 6px 6px 0;
+  }
+  .example-banner {
+    border-left-color: #dd6b20;
+  }
+  .concept-badge {
+    background: #2b6cb0;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12pt;
+    font-weight: bold;
+  }
+  .example-badge {
+    background: #dd6b20;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12pt;
+    font-weight: bold;
+  }
+  .concept-title, .example-title {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #2d3748;
+  }
+
+  /* Note Box */
+  .box-note {
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    font-size: 13pt;
+  }
+  .box-note p { margin: 3px 0; }
+
+  /* Side Notes */
+  .side-note {
+    font-size: 10.5pt;
+    color: #4a5568;
+    background: #edf2f7;
+    border-radius: 4px;
+    padding: 3px 6px;
+    display: inline-block;
+  }
+
+  /* Quiz Header */
+  .quiz-header {
+    background: #2d3748;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12.5pt;
+    font-weight: bold;
+    margin: 6px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Grid Layouts */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 14px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12.5pt;
+    position: relative;
+  }
+  .card p { margin: 2px 0; }
+
+  /* Scratch Pad */
+  .scratch-pad {
+    margin-top: 4px;
+    padding: 3px 6px;
+    border: 1px dashed #cbd5e0;
+    background: #fafafa;
+    border-radius: 4px;
+    font-size: 11pt;
+    color: #718096;
+    min-height: 22px;
+  }
+
+  /* Answer Reveals */
+  .ans-reveal {
+    cursor: pointer;
+    background: #edf2f7;
+    border-bottom: 2px dashed #e53e3e;
+    padding: 0 4px;
+    border-radius: 3px;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .ans-reveal:hover {
+    background: #fed7d7;
+  }
+  .ans-reveal .ans-text {
+    visibility: hidden;
+    color: #e53e3e;
+    font-weight: bold;
+  }
+  .ans-reveal.revealed {
+    background: #fff5f5;
+    border-bottom: 2px solid #e53e3e;
+  }
+  .ans-reveal.revealed .ans-text {
+    visibility: visible;
+  }
+
+  /* Floating Emoji Toolbar */
+  #toolbar {
+    position: fixed;
+    top: 12px;
+    right: 20px;
+    background: rgba(26, 32, 44, 0.92);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    user-select: none;
+  }
+  .tool-btn {
+    background: transparent;
+    border: none;
+    font-size: 16pt;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 8px;
+    transition: transform 0.1s, background 0.2s;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tool-btn:hover {
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.1);
+  }
+  .tool-btn.active {
+    background: #3182ce;
+  }
+  #toc-select {
+    background: #2d3748;
+    color: #fff;
+    border: 1px solid #4a5568;
+    border-radius: 15px;
+    padding: 3px 8px;
+    font-size: 11pt;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+  }
+
+  /* Print Styles */
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+      margin: 0;
+    }
+    #toolbar, .drawing-canvas, .no-print {
+      display: none !important;
+    }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      width: 100% !important;
+      height: 275mm !important;
+      max-height: 275mm !important;
+      overflow: hidden !important;
+      page-break-after: always !important;
+      border: none;
+      padding: 10mm 15mm !important;
+    }
+    .ans-reveal {
+      background: transparent !important;
+      border-bottom: 1px solid #a0aec0 !important;
+    }
+    .ans-reveal .ans-text {
+      visibility: hidden !important;
+    }
+    .scratch-pad {
+      border: 1px dashed #718096 !important;
+      background: #fff !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating Toolbar -->
+<div id="toolbar">
+  <select id="toc-select" title="目錄跳轉">
+    <option value="">📑 單元目錄</option>
+    <option value="page-1">P.1 概念❶ 單項分配律</option>
+    <option value="page-2">P.2 例題❶ 分配律面積</option>
+    <option value="page-3">P.3 概念❷ 多項分配律</option>
+    <option value="page-4">P.4 例題❷ 分配律長方形</option>
+    <option value="page-5">P.5 例題❸ 分配律速算</option>
+    <option value="page-6">P.6 概念❸ 和的平方公式</option>
+    <option value="page-7">P.7 例題❹ 和的平方計算1</option>
+    <option value="page-8">P.8 例題❺ 和的平方計算2</option>
+    <option value="page-9">P.9 概念❹ 差的平方公式</option>
+    <option value="page-10">P.10 例題❻ 差的平方計算1</option>
+    <option value="page-11">P.11 例題❼ 差的平方計算2</option>
+    <option value="page-12">P.12 例題❽ 差的平方計算3</option>
+    <option value="page-13">P.13 概念❺ 平方差公式1</option>
+    <option value="page-14">P.14 概念❻ 平方差幾何拼貼</option>
+    <option value="page-15">P.15 例題❾ 平方差公式計算</option>
+  </select>
+  <button class="tool-btn" id="btn-toggle-ans" title="一鍵全開/全隱 (A)">👁️</button>
+  <button class="tool-btn" id="btn-pen" title="畫筆切換 (P)">✏️</button>
+  <input type="color" id="pen-color" value="#e53e3e" title="畫筆顏色" style="width:24px; height:24px; border:none; border-radius:50%; cursor:pointer; background:none;">
+  <button class="tool-btn" id="btn-clear" title="清除本頁筆跡 (C)">🧹</button>
+  <button class="tool-btn" id="btn-print" title="列印全書 (Ctrl+P)">🖨️</button>
+</div>
+
+<!-- ========== PAGE 1 (P.1) ========== -->
+<div class="page" id="page-1">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">1</div>
+  </div>
+  
+  <div class="concept-banner">
+    <span class="concept-badge">概念 ❶</span>
+    <span class="concept-title">分配律 $a(b+c) = ab + ac$</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div style="flex:1; padding-right:15px;">
+        <p>下圖的長方形中，長是 $a$、寬是 $(c+d)$，面積表示成 <span class="ans-reveal"><span class="ans-text">a(c+d)</span></span>。</p>
+        <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
+          $a(c+d) = $ <span class="ans-reveal"><span class="ans-text">ac + ad</span></span>
+        </p>
+        <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
+          <strong>&lt;例&gt;</strong> $18 \times (100+2) = $ <span class="ans-reveal"><span class="ans-text">18 \times 100 + 18 \times 2</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1800 + 36 = 1836</span></span>
+        </div>
+      </div>
+      <div style="width:230px; text-align:center;">
+        <!-- SVG: 長方形面積分割 a(c+d) = ac + ad -->
+        <svg width="220" height="95" viewBox="0 0 220 95">
+          <!-- 原長方形 -->
+          <rect x="10" y="15" width="55" height="40" fill="#cbd5e0" stroke="#4a5568" stroke-width="1.2"/>
+          <rect x="10" y="55" width="55" height="15" fill="#e2e8f0" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="32" y="10" font-size="10" text-anchor="middle">a</text>
+          <text x="70" y="38" font-size="10">c</text>
+          <text x="70" y="66" font-size="10">d</text>
+          
+          <text x="88" y="45" font-size="16" font-weight="bold">=</text>
+          
+          <!-- 分割 1 ac -->
+          <rect x="105" y="15" width="45" height="40" fill="#cbd5e0" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="127" y="10" font-size="10" text-anchor="middle">a</text>
+          <text x="154" y="38" font-size="10">c</text>
+          
+          <text x="168" y="45" font-size="16" font-weight="bold">+</text>
+          
+          <!-- 分割 2 ad -->
+          <rect x="180" y="40" width="35" height="15" fill="#e2e8f0" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="197" y="35" font-size="10" text-anchor="middle">a</text>
+          <text x="218" y="52" font-size="10">d</text>
+        </svg>
+        <div class="side-note" style="margin-top:2px;">☆ 筆記：乘法分配律即長方形面積相加</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❶</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 利用分配律完成下列各式：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(1) $a(b-c) = $ <span class="ans-reveal"><span class="ans-text">ab - ac</span></span></p>
+        <p>(2) $a(a+3) = $ <span class="ans-reveal"><span class="ans-text">a^2 + 3a</span></span></p>
+        <p>(3) $a(a-5) = $ <span class="ans-reveal"><span class="ans-text">a^2 - 5a</span></span></p>
+      </div>
+      <div class="scratch-pad">括號外的數分別乘進去：$a \times a = a^2$，$a \times 3 = 3a$</div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>2. 利用分配律計算下列各題：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p>(1) $a(b+5) = $ <span class="ans-reveal"><span class="ans-text">ab + 5a</span></span></p>
+        <p>(2) $a(b-7) = $ <span class="ans-reveal"><span class="ans-text">ab - 7a</span></span></p>
+        <p>(3) $a(a+2) = $ <span class="ans-reveal"><span class="ans-text">a^2 + 2a</span></span></p>
+        <p>(4) $a(a-9) = $ <span class="ans-reveal"><span class="ans-text">a^2 - 9a</span></span></p>
+        <p>(5) $12 \times (100+3) = $ <span class="ans-reveal"><span class="ans-text">12 \times 100 + 12 \times 3</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1200 + 36 = 1236</span></span></p>
+        <p>(6) $12 \times (100-3) = $ <span class="ans-reveal"><span class="ans-text">12 \times 100 - 12 \times 3</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1200 - 36 = 1164</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 2 (P.2) ========== -->
+<div class="page" id="page-2">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">2</div>
+  </div>
+  
+  <div class="example-banner">
+    <span class="example-badge">例題 ❶</span>
+    <span class="example-title">利用分配律求長方形面積</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div style="flex:1; padding-right:15px;">
+        <div style="display:flex; gap:20px;">
+          <!-- 例 1 -->
+          <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+            <strong>❶ 長 16，寬 102：</strong><br>
+            列式：$16 \times 102$<br>
+            拆開：$= 16 \times (100 + 2)$<br>
+            $= $ <span class="ans-reveal"><span class="ans-text">1600 + 32</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1632</span></span>
+          </div>
+          <!-- 例 2 -->
+          <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+            <strong>❷ 長 16，寬 99：</strong><br>
+            列式：$16 \times 99$<br>
+            拆開：$= 16 \times (100 - 1)$<br>
+            $= $ <span class="ans-reveal"><span class="ans-text">1600 - 16</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1584</span></span>
+          </div>
+        </div>
+      </div>
+      <div style="width:180px; text-align:center;">
+        <svg width="170" height="90" viewBox="0 0 170 90">
+          <rect x="20" y="10" width="40" height="65" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5"/>
+          <text x="40" y="8" font-size="10" text-anchor="middle">16</text>
+          <text x="65" y="45" font-size="10">102</text>
+          
+          <rect x="100" y="10" width="40" height="60" fill="#fefcbf" stroke="#d69e2e" stroke-width="1.5"/>
+          <text x="120" y="8" font-size="10" text-anchor="middle">16</text>
+          <text x="145" y="45" font-size="10">99</text>
+        </svg>
+        <div class="side-note">☆ 筆記：接近整百拆成 (100+k) 或 (100-k)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❷</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 利用分配律求長方形面積（請寫出算式）：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p><strong>(1) 長 23，寬 103：</strong><br>
+        列式：<span class="ans-reveal"><span class="ans-text">23 \times 103</span></span><br>
+        拆開：$= 23 \times (100 + 3) = $ <span class="ans-reveal"><span class="ans-text">2300 + 69 = 2369</span></span></p>
+        
+        <p style="margin-top:6px;"><strong>(2) 長 23，寬 98：</strong><br>
+        列式：<span class="ans-reveal"><span class="ans-text">23 \times 98</span></span><br>
+        拆開：$= 23 \times (100 - 2) = $ <span class="ans-reveal"><span class="ans-text">2300 - 46 = 2254</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>2. 求下列各值（請寫出算式）：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $12 \times 106$</strong><br>
+        $= 12 \times (100 + $ <span class="ans-reveal"><span class="ans-text">6</span></span> $)$<br>
+        $= $ <span class="ans-reveal"><span class="ans-text">1200 + 72</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">1272</span></span></p>
+        
+        <p style="margin-top:4px;"><strong>(2) $6 \times 999$</strong><br>
+        $= 6 \times (1000 - $ <span class="ans-reveal"><span class="ans-text">1</span></span> $)$<br>
+        $= $ <span class="ans-reveal"><span class="ans-text">6000 - 6</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">5994</span></span></p>
+        
+        <p style="margin-top:4px;"><strong>(3) $12 \times 98$</strong><br>
+        $= 12 \times (100 - 2) = $ <span class="ans-reveal"><span class="ans-text">1200 - 24 = 1176</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 3 (P.3) ========== -->
+<div class="page" id="page-3">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">3</div>
+  </div>
+  
+  <div class="concept-banner">
+    <span class="concept-badge">概念 ❷</span>
+    <span class="concept-title">分配律 $(a+b)(c+d) = ac + ad + bc + bd$</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div style="flex:1; padding-right:15px;">
+        <p>長方形中，長是 $(a+b)$、寬是 $(c+d)$，面積可表示成：</p>
+        <p style="font-weight:bold; font-size:14pt; text-align:center; color:#1a365d; margin:6px 0;">
+          $(a+b)(c+d) = $ <span class="ans-reveal"><span class="ans-text">ac + ad + bc + bd</span></span>
+        </p>
+        <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px; font-size:12pt; line-height:1.7;">
+          <strong>&lt;例&gt;</strong> $(200+1) \times (100+2)$<br>
+          $= 200 \times 100 + 200 \times 2 + 1 \times 100 + 1 \times 2$<br>
+          $= $ <span class="ans-reveal"><span class="ans-text">20000 + 400 + 100 + 2</span></span> $ = $ <span class="ans-reveal"><span class="ans-text">20502</span></span>
+        </div>
+      </div>
+      <div style="width:230px; text-align:center;">
+        <!-- SVG: 四宮格長方形面積模型 (a+b)(c+d) -->
+        <svg width="220" height="110" viewBox="0 0 220 110">
+          <!-- 四宮格 -->
+          <rect x="25" y="20" width="55" height="40" fill="#ebf8ff" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="52" y="44" font-size="11" fill="#2b6cb0" font-weight="bold" text-anchor="middle">甲 (ac)</text>
+          
+          <rect x="80" y="20" width="35" height="40" fill="#fefcbf" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="97" y="44" font-size="11" fill="#d69e2e" font-weight="bold" text-anchor="middle">丙 (bc)</text>
+          
+          <rect x="25" y="60" width="55" height="30" fill="#feebc8" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="52" y="78" font-size="11" fill="#dd6b20" font-weight="bold" text-anchor="middle">乙 (ad)</text>
+          
+          <rect x="80" y="60" width="35" height="30" fill="#e2e8f0" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="97" y="78" font-size="11" fill="#4a5568" font-weight="bold" text-anchor="middle">丁 (bd)</text>
+          
+          <!-- 邊標籤 -->
+          <text x="52" y="14" font-size="11" text-anchor="middle">a</text>
+          <text x="97" y="14" font-size="11" text-anchor="middle">b</text>
+          <text x="12" y="44" font-size="11">c</text>
+          <text x="12" y="78" font-size="11">d</text>
+          
+          <!-- 括號示意圖 -->
+          <text x="140" y="55" font-size="11" fill="#718096">合起來＝四塊相加</text>
+        </svg>
+        <div class="side-note">☆ 筆記：$(a+b)(c+d) = $ 甲＋乙＋丙＋丁</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❸</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 在空格中填入各長方形面積並計算總面積：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $(a+3)(b+5)$</strong><br>
+        $= $ <span class="ans-reveal"><span class="ans-text">ab + 5a + 3b + 15</span></span></p>
+        
+        <p><strong>(2) $(a+4)(c+6)$</strong><br>
+        $= $ <span class="ans-reveal"><span class="ans-text">ac + 6a + 4c + 24</span></span></p>
+        
+        <p><strong>(3) $(x+5)(y+7)$</strong><br>
+        $= $ <span class="ans-reveal"><span class="ans-text">xy + 7x + 5y + 35</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>2. 利用分配律計算下列各題：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $(x+8)(y+9)$</strong><br>
+        $= $ <span class="ans-reveal"><span class="ans-text">xy + 9x + 8y + 72</span></span></p>
+        
+        <p><strong>(2) $(x-1)(y+2)$</strong><br>
+        $= $ <span class="ans-reveal"><span class="ans-text">xy + 2x - y - 2</span></span></p>
+        
+        <p><strong>(3) $(a+2)(b-3)$</strong><br>
+        $= $ <span class="ans-reveal"><span class="ans-text">ab - 3a + 2b - 6</span></span></p>
+        
+        <p><strong>(4) $(a-3)(b-4)$</strong><br>
+        $= $ <span class="ans-reveal"><span class="ans-text">ab - 4a - 3b + 12</span></span></p>
+      </div>
+      <div class="scratch-pad">注意負號：$(-3) \times (-4) = +12$</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 4 (P.4) ========== -->
+<div class="page" id="page-4">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">4</div>
+  </div>
+  
+  <div class="example-banner">
+    <span class="example-badge">例題 ❷</span>
+    <span class="example-title">利用分配律求長方形面積</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; gap:20px;">
+      <!-- 例 1 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>❶ 長 201，寬 102：</strong><br>
+        列式：$201 \times 102$<br>
+        拆開：$= (200+1)(100+2)$<br>
+        $= 20000 + 400 + 100 + 2 = $ <span class="ans-reveal"><span class="ans-text">20502</span></span>
+      </div>
+      <!-- 例 2 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>❷ 長 125，寬 98：</strong><br>
+        列式：$125 \times 98$<br>
+        拆開：$= 125 \times (100-2)$<br>
+        $= 12500 - 250 = $ <span class="ans-reveal"><span class="ans-text">12250</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❹</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>(1) 長 301，寬 102：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        列式：$301 \times 102$<br>
+        拆開：$= (300+1)(100+2)$<br>
+        $= 30000 + 600 + 100 + 2 = $ <span class="ans-reveal"><span class="ans-text">30702</span></span>
+      </div>
+    </div>
+
+    <!-- 題 3 -->
+    <div class="card">
+      <p><strong>(3) 長 11，寬 104：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        列式：$11 \times 104$<br>
+        拆開：$= (10+1)(100+4)$<br>
+        $= 1000 + 40 + 100 + 4 = $ <span class="ans-reveal"><span class="ans-text">1144</span></span>
+      </div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>(2) 長 125，寬 99：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        列式：$125 \times 99$<br>
+        拆開：$= 125 \times (100-1)$<br>
+        $= 12500 - 125 = $ <span class="ans-reveal"><span class="ans-text">12375</span></span>
+      </div>
+    </div>
+
+    <!-- 題 4 -->
+    <div class="card">
+      <p><strong>(4) 長 111，寬 98：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        列式：$111 \times 98$<br>
+        拆開：$= (100+11)(100-2)$<br>
+        $= 10000 - 200 + 1100 - 22 = $ <span class="ans-reveal"><span class="ans-text">10878</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 5 (P.5) ========== -->
+<div class="page" id="page-5">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">5</div>
+  </div>
+  
+  <div class="example-banner">
+    <span class="example-badge">例題 ❸</span>
+    <span class="example-title">利用分配律計算</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; gap:20px;">
+      <!-- 例 1 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(1) $103 \times 107$</strong><br>
+        $= (100+3)(100+7)$<br>
+        $= 10000 + 700 + 300 + 21 = $ <span class="ans-reveal"><span class="ans-text">11021</span></span>
+      </div>
+      <!-- 例 2 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(2) $99 \times 97$</strong><br>
+        $= (100-1)(100-3)$<br>
+        $= 10000 - 300 - 100 + 3 = $ <span class="ans-reveal"><span class="ans-text">9603</span></span>
+      </div>
+    </div>
+    <div class="side-note" style="margin-top:8px;">☆ 筆記：利用分配律計算主要的目的，是將難算的數字拆成整百整十，化繁為簡！</div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❺</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 利用分配律計算下列各題：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $104 \times 106$</strong><br>
+        $= (100+4)(100+6)$<br>
+        $= 10000 + 600 + 400 + 24 = $ <span class="ans-reveal"><span class="ans-text">11024</span></span></p>
+        
+        <p><strong>(2) $102 \times 101$</strong><br>
+        $= (100+2)(100+1)$<br>
+        $= 10000 + 100 + 200 + 2 = $ <span class="ans-reveal"><span class="ans-text">10302</span></span></p>
+        
+        <p><strong>(3) $102 \times 99$</strong><br>
+        $= (100+2)(100-1)$<br>
+        $= 10000 - 100 + 200 - 2 = $ <span class="ans-reveal"><span class="ans-text">10098</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>2. 利用分配律計算下列各題：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $99 \times 98$</strong><br>
+        $= (100-1)(100-2)$<br>
+        $= 10000 - 200 - 100 + 2 = $ <span class="ans-reveal"><span class="ans-text">9702</span></span></p>
+        
+        <p><strong>(2) $99 \times 97$</strong><br>
+        $= (100-1)(100-3)$<br>
+        $= 10000 - 300 - 100 + 3 = $ <span class="ans-reveal"><span class="ans-text">9603</span></span></p>
+        
+        <p><strong>(3) $98 \times 97$</strong><br>
+        $= (100-2)(100-3)$<br>
+        $= 10000 - 300 - 200 + 6 = $ <span class="ans-reveal"><span class="ans-text">9506</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 6 (P.6) ========== -->
+<div class="page" id="page-6">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">6</div>
+  </div>
+  
+  <div class="concept-banner">
+    <span class="concept-badge">概念 ❸</span>
+    <span class="concept-title">和的平方公式 $(a+b)^2 = a^2 + 2ab + b^2$</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div style="flex:1; padding-right:15px;">
+        <p>邊長為 $(a+b)$ 的大正方形，面積可表示為：</p>
+        <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
+          $(a+b)^2 = $ <span class="ans-reveal"><span class="ans-text">a^2 + 2ab + b^2</span></span>
+        </p>
+        <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
+          <strong>&lt;例&gt;</strong> $908^2 = (900 + $ <span class="ans-reveal"><span class="ans-text">8</span></span> $)^2$
+        </div>
+      </div>
+      <div style="width:230px; text-align:center;">
+        <!-- SVG: 和的平方正方形面積切割 -->
+        <svg width="220" height="110" viewBox="0 0 220 110">
+          <rect x="30" y="15" width="55" height="55" fill="#ebf8ff" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="57" y="47" font-size="11" fill="#2b6cb0" font-weight="bold" text-anchor="middle">a²</text>
+          
+          <rect x="85" y="15" width="25" height="55" fill="#fefcbf" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="97" y="47" font-size="10" fill="#d69e2e" text-anchor="middle">ab</text>
+          
+          <rect x="30" y="70" width="55" height="25" fill="#feebc8" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="57" y="86" font-size="10" fill="#dd6b20" text-anchor="middle">ab</text>
+          
+          <rect x="85" y="70" width="25" height="25" fill="#e2e8f0" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="97" y="86" font-size="10" fill="#4a5568" text-anchor="middle">b²</text>
+          
+          <text x="57" y="10" font-size="10" text-anchor="middle">a</text>
+          <text x="97" y="10" font-size="10" text-anchor="middle">b</text>
+          <text x="18" y="47" font-size="10">a</text>
+          <text x="18" y="86" font-size="10">b</text>
+          
+          <text x="135" y="55" font-size="11" fill="#c53030" font-weight="bold">＝ a² + 2ab + b²</text>
+        </svg>
+        <div class="side-note">☆ 筆記：$908^2 = 900^2 + 8^2$ 對嗎？（錯！漏了 $2ab$）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❻</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 計算下列正方形面積：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(1) $(x+y)^2 = $ <span class="ans-reveal"><span class="ans-text">x^2 + 2xy + y^2</span></span></p>
+        <p>(2) $(c+d)^2 = $ <span class="ans-reveal"><span class="ans-text">c^2 + 2cd + d^2</span></span></p>
+        <p>(3) $(x+3)^2 = $ <span class="ans-reveal"><span class="ans-text">x^2 + 6x + 9</span></span></p>
+      </div>
+      
+      <p style="margin-top:6px;"><strong>2. 計算下列正方形面積：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p>(1) $(100+2)^2 = $ <span class="ans-reveal"><span class="ans-text">100^2 + 2 \times 100 \times 2 + 2^2 = 10404</span></span></p>
+        <p>(2) $(20+1)^2 = $ <span class="ans-reveal"><span class="ans-text">20^2 + 2 \times 20 \times 1 + 1^2 = 441</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 3 -->
+    <div class="card">
+      <p><strong>3. 判斷下列等式是否正確，若有錯誤請改正：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(A) $\square (10+2)^2 = 10^2 + 2^2$<br>
+        改正：<span class="ans-reveal"><span class="ans-text">【錯誤】應為 10² + 2×10×2 + 2² = 144</span></span></p>
+        
+        <p>(B) $\square (10+3)^2 = 10^2 + 3 \times 10 + 3^2$<br>
+        改正：<span class="ans-reveal"><span class="ans-text">【錯誤】應為 10² + 2×10×3 + 3² = 169</span></span></p>
+        
+        <p>(C) $\square (10+4)^2 = 10^2 + 2 \times 10 \times 4 + 4$<br>
+        改正：<span class="ans-reveal"><span class="ans-text">【錯誤】最後一項應為 4² = 16</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 7 (P.7) ========== -->
+<div class="page" id="page-7">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">7</div>
+  </div>
+  
+  <div class="example-banner">
+    <span class="example-badge">例題 ❹</span>
+    <span class="example-title">運用和的平方公式計算 1</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; gap:20px;">
+      <!-- 例 1 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(1) $708^2$</strong><br>
+        $= (700 + 8)^2$<br>
+        $= 700^2 + 2 \times 700 \times 8 + 8^2$<br>
+        $= 490000 + 11200 + 64 = $ <span class="ans-reveal"><span class="ans-text">501264</span></span>
+      </div>
+      <!-- 例 2 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(2) $10.5^2$</strong><br>
+        $= (10 + 0.5)^2$<br>
+        $= 10^2 + 2 \times 10 \times 0.5 + 0.5^2$<br>
+        $= 100 + 10 + 0.25 = $ <span class="ans-reveal"><span class="ans-text">110.25</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❼</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 運用和的平方公式計算各題（請寫出算式）：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $302^2$</strong><br>
+        $= (300+2)^2 = 300^2 + 2 \times 300 \times 2 + 2^2$<br>
+        $= 90000 + 1200 + 4 = $ <span class="ans-reveal"><span class="ans-text">91204</span></span></p>
+        
+        <p><strong>(2) $405^2$</strong><br>
+        $= (400+5)^2 = 400^2 + 2 \times 400 \times 5 + 5^2$<br>
+        $= 160000 + 4000 + 25 = $ <span class="ans-reveal"><span class="ans-text">164025</span></span></p>
+        
+        <p><strong>(3) $104^2$</strong><br>
+        $= (100+4)^2 = 100^2 + 2 \times 100 \times 4 + 4^2$<br>
+        $= 10000 + 800 + 16 = $ <span class="ans-reveal"><span class="ans-text">10816</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>2. 運用和的平方公式計算各題（請寫出算式）：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $10.7^2$</strong><br>
+        $= (10+0.7)^2 = 10^2 + 2 \times 10 \times 0.7 + 0.7^2$<br>
+        $= 100 + 14 + 0.49 = $ <span class="ans-reveal"><span class="ans-text">114.49</span></span></p>
+        
+        <p><strong>(2) $10.6^2$</strong><br>
+        $= (10+0.6)^2 = 10^2 + 2 \times 10 \times 0.6 + 0.6^2$<br>
+        $= 100 + 12 + 0.36 = $ <span class="ans-reveal"><span class="ans-text">112.36</span></span></p>
+        
+        <p><strong>(3) $100.8^2$</strong><br>
+        $= (100+0.8)^2 = 100^2 + 2 \times 100 \times 0.8 + 0.8^2$<br>
+        $= 10000 + 160 + 0.64 = $ <span class="ans-reveal"><span class="ans-text">10160.64</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 8 (P.8) ========== -->
+<div class="page" id="page-8">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">8</div>
+  </div>
+  
+  <div class="example-banner">
+    <span class="example-badge">例題 ❺</span>
+    <span class="example-title">運用和的平方公式計算 2（逆運算）</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; gap:20px;">
+      <!-- 例 1 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(1) $87^2 + 2 \times 87 \times 13 + 13^2$</strong><br>
+        $= (87 + 13)^2$<br>
+        $= 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span>
+      </div>
+      <!-- 例 2 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(2) $(8\frac{1}{4})^2$</strong><br>
+        $= (8 + \frac{1}{4})^2 = 8^2 + 2 \times 8 \times \frac{1}{4} + (\frac{1}{4})^2$<br>
+        $= 64 + 4 + \frac{1}{16} = $ <span class="ans-reveal"><span class="ans-text">68\frac{1}{16}</span></span>
+      </div>
+    </div>
+    <div class="side-note" style="margin-top:6px;">☆ 筆記：$87^2 + 26 \times 87 + 13^2$ 也可以逆用公式嗎？（$26 = 2 \times 13$，可以！）</div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❽</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1-3 -->
+    <div class="card">
+      <p><strong>運用和的平方公式計算各題：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(1) $25^2 + 2 \times 25 \times 5 + 5^2$<br>
+        $= (25+5)^2 = 30^2 = $ <span class="ans-reveal"><span class="ans-text">900</span></span></p>
+        
+        <p>(2) $98^2 + 2 \times 98 \times 2 + 2^2$<br>
+        $= (98+2)^2 = 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+        
+        <p>(3) $39^2 + 2 \times 39 \times 61 + 61^2$<br>
+        $= (39+61)^2 = 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 4-6 -->
+    <div class="card">
+      <p><strong>將中間項拆出 $2 \times a \times b$：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(4) $78^2 + 24 \times 78 + 12^2$<br>
+        $= 78^2 + 2 \times $ <span class="ans-reveal"><span class="ans-text">12</span></span> $\times 78 + 12^2 = (78+12)^2 = $ <span class="ans-reveal"><span class="ans-text">8100</span></span></p>
+        
+        <p>(5) $93^2 + 14 \times 93 + 7^2$<br>
+        $= 93^2 + 2 \times $ <span class="ans-reveal"><span class="ans-text">7</span></span> $\times 93 + 7^2 = (93+7)^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+        
+        <p>(6) $47^2 + 6 \times 47 + 3^2$<br>
+        $= 47^2 + 2 \times $ <span class="ans-reveal"><span class="ans-text">3</span></span> $\times 47 + 3^2 = (47+3)^2 = $ <span class="ans-reveal"><span class="ans-text">2500</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 9 (P.9) ========== -->
+<div class="page" id="page-9">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">9</div>
+  </div>
+  
+  <div class="concept-banner">
+    <span class="concept-badge">概念 ❹</span>
+    <span class="concept-title">差的平方公式 $(a-b)^2 = a^2 - 2ab + b^2$</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div style="flex:1; padding-right:15px;">
+        <p>邊長為 $(a-b)$ 的正方形面積，可表示為：</p>
+        <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
+          $(a-b)^2 = $ <span class="ans-reveal"><span class="ans-text">a^2 - 2ab + b^2</span></span>
+        </p>
+        <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
+          <strong>&lt;例&gt;</strong> $499^2 = (500 - $ <span class="ans-reveal"><span class="ans-text">1</span></span> $)^2$
+        </div>
+      </div>
+      <div style="width:230px; text-align:center;">
+        <!-- SVG: 差的平方面積扣除幾何示意圖 -->
+        <svg width="220" height="110" viewBox="0 0 220 110">
+          <!-- 大正方形邊長 a -->
+          <rect x="30" y="15" width="80" height="80" fill="#ebf8ff" stroke="#4a5568" stroke-width="1.2"/>
+          <!-- 目標區域 (a-b)² -->
+          <rect x="30" y="15" width="55" height="55" fill="#c6f6d5" stroke="#22543d" stroke-width="1.2"/>
+          <text x="57" y="47" font-size="10" fill="#22543d" font-weight="bold" text-anchor="middle">(a-b)²</text>
+          
+          <!-- 扣除的兩塊與重疊的 b² -->
+          <rect x="85" y="70" width="25" height="25" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.2"/>
+          <text x="97" y="86" font-size="9" fill="#e53e3e" text-anchor="middle">+b²</text>
+          
+          <text x="57" y="10" font-size="10" text-anchor="middle">a-b</text>
+          <text x="97" y="10" font-size="10" text-anchor="middle">b</text>
+          <text x="18" y="47" font-size="10">a-b</text>
+          <text x="18" y="86" font-size="10">b</text>
+          
+          <text x="130" y="55" font-size="11" fill="#c53030" font-weight="bold">＝ a² - 2ab + b²</text>
+        </svg>
+        <div class="side-note">☆ 筆記：$(11-1)^2 = 11^2 - 1^2$ 對嗎？（錯！漏掉 $-2ab$）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❾</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 運用差的平方公式計算各題：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(1) $(x-y)^2 = $ <span class="ans-reveal"><span class="ans-text">x^2 - 2xy + y^2</span></span></p>
+        <p>(2) $(c-d)^2 = $ <span class="ans-reveal"><span class="ans-text">c^2 - 2cd + d^2</span></span></p>
+        <p>(3) $(x-3)^2 = $ <span class="ans-reveal"><span class="ans-text">x^2 - 6x + 9</span></span></p>
+        <p>(4) $(y-4)^2 = $ <span class="ans-reveal"><span class="ans-text">y^2 - 8y + 16</span></span></p>
+      </div>
+      
+      <p style="margin-top:6px;"><strong>2. 數字展開計算：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p>(1) $(20-3)^2 = $ <span class="ans-reveal"><span class="ans-text">20^2 - 2\times 20\times 3 + 3^2 = 400 - 120 + 9 = 289</span></span></p>
+        <p>(2) $(100-1)^2 = $ <span class="ans-reveal"><span class="ans-text">100^2 - 2\times 100\times 1 + 1^2 = 9801</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 3 -->
+    <div class="card">
+      <p><strong>3. 判斷下列各式是否正確，若有錯誤請改正：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(A) $\square (10-3)^2 = 10^2 - 3^2$<br>
+        改正：<span class="ans-reveal"><span class="ans-text">【錯誤】應為 10² - 2×10×3 + 3² = 49</span></span></p>
+        
+        <p>(B) $\square (20-5)^2 = 20^2 - 2 \times 20 \times 5 - 5^2$<br>
+        改正：<span class="ans-reveal"><span class="ans-text">【錯誤】最後一項應為 + 5²</span></span></p>
+        
+        <p>(C) $\square (x-y)^2 = x^2 + 2xy - y^2$<br>
+        改正：<span class="ans-reveal"><span class="ans-text">【錯誤】應為 x² - 2xy + y²</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 10 (P.10) ========== -->
+<div class="page" id="page-10">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">10</div>
+  </div>
+  
+  <div class="example-banner">
+    <span class="example-badge">例題 ❻</span>
+    <span class="example-title">運用差的平方公式計算 1</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; gap:20px;">
+      <!-- 例 1 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(1) 求邊長 98 的正方形面積：</strong><br>
+        $98 \times 98 = 98^2$<br>
+        $= (100 - 2)^2 = 100^2 - 2 \times 100 \times 2 + 2^2$<br>
+        $= 10000 - 400 + 4 = $ <span class="ans-reveal"><span class="ans-text">9604</span></span>
+      </div>
+      <!-- 例 2 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(2) $98^2$</strong><br>
+        $= (100 - 2)^2$<br>
+        $= 10000 - 400 + 4 = $ <span class="ans-reveal"><span class="ans-text">9604</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ❿</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 運用差的平方公式計算各題（拆成 $100-k$）：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $99^2$</strong><br>
+        $= (100-1)^2 = 100^2 - 2 \times 100 \times 1 + 1^2$<br>
+        $= 10000 - 200 + 1 = $ <span class="ans-reveal"><span class="ans-text">9801</span></span></p>
+        
+        <p><strong>(2) $96^2$</strong><br>
+        $= (100-4)^2 = 100^2 - 2 \times 100 \times 4 + 4^2$<br>
+        $= 10000 - 800 + 16 = $ <span class="ans-reveal"><span class="ans-text">9216</span></span></p>
+        
+        <p><strong>(3) $94^2$</strong><br>
+        $= (100-6)^2 = 100^2 - 2 \times 100 \times 6 + 6^2$<br>
+        $= 10000 - 1200 + 36 = $ <span class="ans-reveal"><span class="ans-text">8836</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>2. 運用差的平方公式計算各題（拆成 $200-k$）：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $199^2$</strong><br>
+        $= (200-1)^2 = 200^2 - 2 \times 200 \times 1 + 1^2$<br>
+        $= 40000 - 400 + 1 = $ <span class="ans-reveal"><span class="ans-text">39601</span></span></p>
+        
+        <p><strong>(2) $198^2$</strong><br>
+        $= (200-2)^2 = 200^2 - 2 \times 200 \times 2 + 2^2$<br>
+        $= 40000 - 800 + 4 = $ <span class="ans-reveal"><span class="ans-text">39204</span></span></p>
+        
+        <p><strong>(3) $195^2$</strong><br>
+        $= (200-5)^2 = 200^2 - 2 \times 200 \times 5 + 5^2$<br>
+        $= 40000 - 2000 + 25 = $ <span class="ans-reveal"><span class="ans-text">38025</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 11 (P.11) ========== -->
+<div class="page" id="page-11">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">11</div>
+  </div>
+  
+  <div class="example-banner">
+    <span class="example-badge">例題 ❼</span>
+    <span class="example-title">運用差的平方公式計算 2</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; gap:20px;">
+      <!-- 例 1 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(1) $997^2$</strong><br>
+        $= (1000 - 3)^2$<br>
+        $= 1000^2 - 2 \times 1000 \times 3 + 3^2$<br>
+        $= 1000000 - 6000 + 9 = $ <span class="ans-reveal"><span class="ans-text">994009</span></span>
+      </div>
+      <!-- 例 2 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(2) $8.9^2$</strong><br>
+        $= (9 - 0.1)^2$<br>
+        $= 9^2 - 2 \times 9 \times 0.1 + 0.1^2$<br>
+        $= 81 - 1.8 + 0.01 = $ <span class="ans-reveal"><span class="ans-text">79.21</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ⓫</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1-2 -->
+    <div class="card">
+      <p><strong>運用差的平方公式計算（拆成 $1000-k$）：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p><strong>(1) $999^2$</strong><br>
+        $= (1000 - 1)^2 = 1000^2 - 2 \times 1000 \times 1 + 1^2$<br>
+        $= 1000000 - 2000 + 1 = $ <span class="ans-reveal"><span class="ans-text">998001</span></span></p>
+        
+        <p><strong>(2) $998^2$</strong><br>
+        $= (1000 - 2)^2 = 1000^2 - 2 \times 1000 \times 2 + 2^2$<br>
+        $= 1000000 - 4000 + 4 = $ <span class="ans-reveal"><span class="ans-text">996004</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 3-4 -->
+    <div class="card">
+      <p><strong>運用差的平方公式計算（拆成 $1000-k$）：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p><strong>(3) $996^2$</strong><br>
+        $= (1000 - 4)^2 = 1000^2 - 2 \times 1000 \times 4 + 4^2$<br>
+        $= 1000000 - 8000 + 16 = $ <span class="ans-reveal"><span class="ans-text">992016</span></span></p>
+        
+        <p><strong>(4) $995^2$</strong><br>
+        $= (1000 - 5)^2 = 1000^2 - 2 \times 1000 \times 5 + 5^2$<br>
+        $= 1000000 - 10000 + 25 = $ <span class="ans-reveal"><span class="ans-text">990025</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 12 (P.12) ========== -->
+<div class="page" id="page-12">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">12</div>
+  </div>
+  
+  <div class="example-banner">
+    <span class="example-badge">例題 ❽</span>
+    <span class="example-title">運用差的平方公式計算 3（逆運算）</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; gap:20px;">
+      <!-- 例 1 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(1) $567^2 - 2 \times 567 \times 67 + 67^2$</strong><br>
+        $= (567 - 67)^2$<br>
+        $= 500^2 = $ <span class="ans-reveal"><span class="ans-text">250000</span></span>
+      </div>
+      <!-- 例 2 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:8px 10px;">
+        <strong>(2) $(9\frac{1}{2})^2$</strong><br>
+        $= (10 - \frac{1}{2})^2 = 10^2 - 2 \times 10 \times \frac{1}{2} + (\frac{1}{2})^2$<br>
+        $= 100 - 10 + \frac{1}{4} = $ <span class="ans-reveal"><span class="ans-text">90\frac{1}{4}</span></span>
+      </div>
+    </div>
+    <div class="side-note" style="margin-top:6px;">☆ 筆記：$(9\frac{1}{2})^2$ 中的 $9\frac{1}{2}$ 可以改成 $(9+\frac{1}{2})$ 嗎？（可以！結果完全一樣）</div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ⓬</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1-3 -->
+    <div class="card">
+      <p><strong>逆用差的平方公式計算各題：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(1) $108^2 - 2 \times 108 \times 8 + 8^2$<br>
+        $= (108 - 8)^2 = 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+        
+        <p>(2) $123^2 - 2 \times 123 \times 23 + 23^2$<br>
+        $= (123 - 23)^2 = 100^2 = $ <span class="ans-reveal"><span class="ans-text">10000</span></span></p>
+        
+        <p>(3) $97^2 - 2 \times 97 \times 47 + 47^2$<br>
+        $= (97 - 47)^2 = 50^2 = $ <span class="ans-reveal"><span class="ans-text">2500</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 4-6 -->
+    <div class="card">
+      <p><strong>將中間項拆出 $2 \times a \times b$：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(4) $53^2 - 6 \times 53 + 3^2$<br>
+        $= 53^2 - 2 \times $ <span class="ans-reveal"><span class="ans-text">3</span></span> $\times 53 + 3^2 = (53-3)^2 = $ <span class="ans-reveal"><span class="ans-text">2500</span></span></p>
+        
+        <p>(5) $42^2 - 4 \times 42 + 2^2$<br>
+        $= 42^2 - 2 \times $ <span class="ans-reveal"><span class="ans-text">2</span></span> $\times 42 + 2^2 = (42-2)^2 = $ <span class="ans-reveal"><span class="ans-text">1600</span></span></p>
+        
+        <p>(6) $75^2 - 10 \times 75 + 5^2$<br>
+        $= 75^2 - 2 \times $ <span class="ans-reveal"><span class="ans-text">5</span></span> $\times 75 + 5^2 = (75-5)^2 = $ <span class="ans-reveal"><span class="ans-text">4900</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 13 (P.13) ========== -->
+<div class="page" id="page-13">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">13</div>
+  </div>
+  
+  <div class="concept-banner">
+    <span class="concept-badge">概念 ❺</span>
+    <span class="concept-title">平方差公式 $(a+b)(a-b) = a^2 - b^2$</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div style="flex:1; padding-right:15px;">
+        <p>一加一減乘起來，中間項相互抵消：</p>
+        <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
+          $(a+b)(a-b) = $ <span class="ans-reveal"><span class="ans-text">a^2 - b^2</span></span>
+        </p>
+        <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
+          <strong>&lt;例&gt;</strong> $88 \times 72 = (80 + 8)(80 - 8)$<br>
+          $= 80^2 - 8^2 = 6400 - 64 = $ <span class="ans-reveal"><span class="ans-text">6336</span></span>
+        </div>
+      </div>
+      <div style="width:200px; text-align:center;">
+        <div style="background:#edf2f7; border-radius:8px; padding:8px 10px; border:1px dashed #cbd5e0;">
+          <strong>口訣心法：</strong><br>
+          找兩數的「平均數」為 $a$！<br>
+          $88$ 與 $72$ 的中間是 $80$<br>
+          $(80+8)(80-8) = 80^2 - 8^2$
+        </div>
+        <div class="side-note" style="margin-top:6px;">☆ 筆記：平方減平方，沒有中間項！</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ⓭</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 運用平方差公式計算下列各式：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(1) $(x+y)(x-y) = $ <span class="ans-reveal"><span class="ans-text">x^2 - y^2</span></span></p>
+        <p>(2) $(c+d)(c-d) = $ <span class="ans-reveal"><span class="ans-text">c^2 - d^2</span></span></p>
+        <p>(3) $(x+3)(x-3) = $ <span class="ans-reveal"><span class="ans-text">x^2 - 9</span></span></p>
+        <p>(4) $(y+4)(y-4) = $ <span class="ans-reveal"><span class="ans-text">y^2 - 16</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>2. 運用平方差公式計算數字乘積：</strong></p>
+      <div style="margin:4px 0; line-height:1.8;">
+        <p><strong>(1) $52 \times 48$</strong><br>
+        $= (50 + 2)(50 - 2) = 50^2 - 2^2$<br>
+        $= 2500 - 4 = $ <span class="ans-reveal"><span class="ans-text">2496</span></span></p>
+        
+        <p><strong>(2) $108 \times 92$</strong><br>
+        $= (100 + 8)(100 - 8) = 100^2 - 8^2$<br>
+        $= 10000 - 64 = $ <span class="ans-reveal"><span class="ans-text">9936</span></span></p>
+        
+        <p><strong>(3) $65 \times 55$</strong><br>
+        $= (60 + 5)(60 - 5) = 60^2 - 5^2$<br>
+        $= 3600 - 25 = $ <span class="ans-reveal"><span class="ans-text">3575</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 14 (P.14) ========== -->
+<div class="page" id="page-14">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">14</div>
+  </div>
+  
+  <div class="concept-banner">
+    <span class="concept-badge">概念 ❻</span>
+    <span class="concept-title">平方差公式 $a^2 - b^2 = (a+b)(a-b)$（幾何拼貼）</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div style="flex:1; padding-right:15px;">
+        <p>大正方形面積 $a^2$ 挖掉邊長 $b$ 的小正方形 $b^2$：</p>
+        <p style="font-weight:bold; font-size:15pt; text-align:center; color:#1a365d; margin:6px 0;">
+          $a^2 - b^2 = $ <span class="ans-reveal"><span class="ans-text">(a+b)(a-b)</span></span>
+        </p>
+        <div style="background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; margin-top:6px;">
+          <strong>&lt;例&gt;</strong> $83^2 - 17^2 = (83 + 17)(83 - 17)$<br>
+          $= 100 \times 66 = $ <span class="ans-reveal"><span class="ans-text">6600</span></span>
+        </div>
+      </div>
+      <div style="width:240px; text-align:center;">
+        <!-- SVG: 平方差幾何直立拼貼圖 -->
+        <svg width="230" height="95" viewBox="0 0 230 95">
+          <!-- 挖空正方形 -->
+          <polygon points="10,15 65,15 65,40 45,40 45,70 10,70" fill="#cbd5e0" stroke="#4a5568" stroke-width="1.2"/>
+          <rect x="45" y="40" width="20" height="30" fill="#fff" stroke="#e53e3e" stroke-dasharray="2,2"/>
+          <text x="55" y="58" font-size="9" fill="#e53e3e" text-anchor="middle">b²</text>
+          
+          <text x="80" y="45" font-size="14" font-weight="bold">→</text>
+          
+          <!-- 直立拼成 (a+b)(a-b) 長方形 -->
+          <rect x="100" y="25" width="55" height="45" fill="#cbd5e0" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="127" y="52" font-size="10" text-anchor="middle">甲</text>
+          
+          <rect x="155" y="25" width="20" height="45" fill="#feebc8" stroke="#4a5568" stroke-width="1.2"/>
+          <text x="165" y="52" font-size="10" fill="#dd6b20" text-anchor="middle">乙</text>
+          
+          <text x="127" y="18" font-size="9" text-anchor="middle">a</text>
+          <text x="165" y="18" font-size="9" text-anchor="middle">b</text>
+          <text x="182" y="52" font-size="9">a-b</text>
+        </svg>
+        <div class="side-note">☆ 筆記：將剩餘塊「擺直貼上」，長 $(a+b)$ 寬 $(a-b)$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ⓮</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 運用平方差公式計算長方形面積：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p>(1) $x^2 - y^2 = $ <span class="ans-reveal"><span class="ans-text">(x+y)(x-y)</span></span></p>
+        <p>(2) $95^2 - 5^2 = (95+5)(95-5)$<br>
+        $= 100 \times 90 = $ <span class="ans-reveal"><span class="ans-text">9000</span></span></p>
+        <p>(3) $98^2 - 2^2 = (98+2)(98-2)$<br>
+        $= 100 \times 96 = $ <span class="ans-reveal"><span class="ans-text">9600</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>2. 運用平方差公式計算各題：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p><strong>(1) $85^2 - 15^2$</strong><br>
+        $= (85+15)(85-15) = 100 \times 70 = $ <span class="ans-reveal"><span class="ans-text">7000</span></span></p>
+        
+        <p><strong>(2) $93^2 - 7^2$</strong><br>
+        $= (93+7)(93-7) = 100 \times 86 = $ <span class="ans-reveal"><span class="ans-text">8600</span></span></p>
+        
+        <p><strong>(3) $66^2 - 34^2$</strong><br>
+        $= (66+34)(66-34) = 100 \times 32 = $ <span class="ans-reveal"><span class="ans-text">3200</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 15 (P.15) ========== -->
+<div class="page" id="page-15">
+  <canvas class="drawing-canvas"></canvas>
+  <div class="header">
+    <div class="unit-tag">B3 1-1 乘法公式</div>
+    <div class="page-num">15</div>
+  </div>
+  
+  <div class="example-banner">
+    <span class="example-badge">例題 ❾</span>
+    <span class="example-title">運用平方差公式計算</span>
+  </div>
+
+  <div class="box-note">
+    <div style="display:flex; gap:15px;">
+      <!-- 例 1 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px;">
+        <strong>(1) $103 \times 97$</strong><br>
+        $= (100+3)(100-3)$<br>
+        $= 100^2 - 3^2$<br>
+        $= 10000 - 9 = $ <span class="ans-reveal"><span class="ans-text">9991</span></span>
+      </div>
+      <!-- 例 2 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px;">
+        <strong>(2) $299^2 - 99^2$</strong><br>
+        $= (299+99)(299-99)$<br>
+        $= 398 \times 200$<br>
+        $= $ <span class="ans-reveal"><span class="ans-text">79600</span></span>
+      </div>
+      <!-- 例 3 -->
+      <div style="flex:1; background:#fff; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px;">
+        <strong>(3) $2\frac{1}{3} \times 1\frac{2}{3}$</strong><br>
+        $= (2+\frac{1}{3})(2-\frac{1}{3})$<br>
+        $= 2^2 - (\frac{1}{3})^2$<br>
+        $= 4 - \frac{1}{9} = $ <span class="ans-reveal"><span class="ans-text">3\frac{8}{9}</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-header">
+    <span>🎯 牛刀小試 ⓯</span>
+  </div>
+
+  <div class="grid-2">
+    <!-- 題 1 -->
+    <div class="card">
+      <p><strong>1. 運用平方差公式計算乘積：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p><strong>(1) $102 \times 98$</strong><br>
+        $= (100+2)(100-2) = 100^2 - 2^2 = 10000 - 4 = $ <span class="ans-reveal"><span class="ans-text">9996</span></span></p>
+        
+        <p><strong>(2) $105 \times 95$</strong><br>
+        $= (100+5)(100-5) = 100^2 - 5^2 = 10000 - 25 = $ <span class="ans-reveal"><span class="ans-text">9975</span></span></p>
+        
+        <p><strong>(3) $10\frac{1}{2} \times 9\frac{1}{2}$</strong><br>
+        $= (10+\frac{1}{2})(10-\frac{1}{2}) = 10^2 - (\frac{1}{2})^2 = 100 - \frac{1}{4} = $ <span class="ans-reveal"><span class="ans-text">99\frac{3}{4}</span></span></p>
+      </div>
+    </div>
+
+    <!-- 題 2 -->
+    <div class="card">
+      <p><strong>2. 運用平方差公式計算兩數平方差：</strong></p>
+      <div style="margin:4px 0; line-height:1.9;">
+        <p><strong>(1) $19^2 - 1^2$</strong><br>
+        $= (19+1)(19-1) = 20 \times 18 = $ <span class="ans-reveal"><span class="ans-text">360</span></span></p>
+        
+        <p><strong>(2) $123^2 - 23^2$</strong><br>
+        $= (123+23)(123-23) = 146 \times 100 = $ <span class="ans-reveal"><span class="ans-text">14600</span></span></p>
+        
+        <p><strong>(3) $(3\frac{1}{2})^2 - (2\frac{1}{2})^2$</strong><br>
+        $= (3.5+2.5)(3.5-2.5) = 6 \times 1 = $ <span class="ans-reveal"><span class="ans-text">6</span></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // TOC Jump
+  document.getElementById('toc-select').addEventListener('change', function() {
+    if (this.value) {
+      const el = document.getElementById(this.value);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
+  // Reveal Toggle
+  let allRevealed = false;
+  const toggleBtn = document.getElementById('btn-toggle-ans');
+  toggleBtn.addEventListener('click', () => {
+    allRevealed = !allRevealed;
+    document.querySelectorAll('.ans-reveal').forEach(el => {
+      if (allRevealed) el.classList.add('revealed');
+      else el.classList.remove('revealed');
+    });
+    toggleBtn.textContent = allRevealed ? '🙈' : '👁️';
+  });
+
+  // Individual Reveal
+  document.querySelectorAll('.ans-reveal').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      el.classList.toggle('revealed');
+    });
+  });
+
+  // Print
+  document.getElementById('btn-print').addEventListener('click', () => {
+    window.print();
+  });
+
+  // Drawing Canvas setup
+  let isDrawingMode = false;
+  let penColor = '#e53e3e';
+  let penWidth = 3;
+  const penBtn = document.getElementById('btn-pen');
+  const colorInput = document.getElementById('pen-color');
+  
+  colorInput.addEventListener('change', (e) => {
+    penColor = e.target.value;
+  });
+
+  penBtn.addEventListener('click', () => {
+    isDrawingMode = !isDrawingMode;
+    document.body.classList.toggle('drawing-mode', isDrawingMode);
+    penBtn.classList.toggle('active', isDrawingMode);
+  });
+
+  // Clear Canvas
+  document.getElementById('btn-clear').addEventListener('click', () => {
+    document.querySelectorAll('.drawing-canvas').forEach(canvas => {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+  });
+
+  // Canvas Drawing
+  function initCanvases() {
+    document.querySelectorAll('.page').forEach(page => {
+      const canvas = page.querySelector('.drawing-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      function resize() {
+        const rect = page.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      let drawing = false;
+      let lastX = 0;
+      let lastY = 0;
+
+      function startDraw(e) {
+        if (!isDrawingMode) return;
+        drawing = true;
+        const rect = canvas.getBoundingClientRect();
+        lastX = (e.clientX || e.touches[0].clientX) - rect.left;
+        lastY = (e.clientY || e.touches[0].clientY) - rect.top;
+      }
+
+      function draw(e) {
+        if (!drawing || !isDrawingMode) return;
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        const curX = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+        const curY = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+        ctx.strokeStyle = penColor;
+        ctx.lineWidth = penWidth;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(curX, curY);
+        ctx.stroke();
+
+        lastX = curX;
+        lastY = curY;
+      }
+
+      function stopDraw() {
+        drawing = false;
+      }
+
+      canvas.addEventListener('mousedown', startDraw);
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', stopDraw);
+      canvas.addEventListener('mouseleave', stopDraw);
+
+      canvas.addEventListener('touchstart', startDraw, { passive: false });
+      canvas.addEventListener('touchmove', draw, { passive: false });
+      canvas.addEventListener('touchend', stopDraw);
+    });
+  }
+
+  window.addEventListener('load', initCanvases);
+
+  // Keyboard Shortcuts
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'a' || e.key === 'A') {
+      toggleBtn.click();
+    } else if (e.key === 'c' || e.key === 'C') {
+      document.getElementById('btn-clear').click();
+    } else if (e.key === 'p' && !e.ctrlKey && !e.metaKey) {
+      penBtn.click();
+    }
+  });
+</script>
+</body>
+</html>
