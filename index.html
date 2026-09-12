@@ -322,6 +322,95 @@
     color: #2c5282;
     line-height: 1.6;
   }
+
+  /* Mathematical Typesetting & Typography */
+  .math-term, sup, sub, .frac {
+    font-family: "Times New Roman", "Cambria Math", serif;
+  }
+  sup {
+    font-size: 0.72em;
+    vertical-align: 0.42em;
+    line-height: 0;
+  }
+  sub {
+    font-size: 0.72em;
+    vertical-align: -0.25em;
+    line-height: 0;
+  }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: -0.42em;
+    text-align: center;
+    padding: 0 2px;
+    font-size: 0.88em;
+    line-height: 1;
+  }
+  .frac .num {
+    border-bottom: 1.2px solid currentColor;
+    padding: 0 2px 1px 2px;
+    display: block;
+  }
+  .frac .denom {
+    padding: 1px 2px 0 2px;
+    display: block;
+  }
+  /* Long Division Table */
+  .long-div-table {
+    display: inline-table;
+    border-collapse: collapse;
+    font-family: "Times New Roman", serif;
+    font-size: 13pt;
+    line-height: 1.35;
+    margin: 4px 0;
+    vertical-align: middle;
+  }
+  .long-div-table td {
+    padding: 1px 5px;
+    white-space: nowrap;
+  }
+  .ld-quotient {
+    border-bottom: 2px solid #2d3748;
+    font-weight: bold;
+    text-align: left;
+  }
+  .ld-divisor {
+    text-align: right;
+    padding-right: 6px;
+  }
+  .ld-dividend {
+    border-left: 2px solid #2d3748;
+    border-top-left-radius: 4px;
+    padding-left: 8px;
+    text-align: left;
+  }
+  .ld-sub {
+    border-bottom: 1.5px solid #718096;
+    text-align: left;
+  }
+  .ld-rem {
+    text-align: right;
+    font-weight: bold;
+    color: #c53030;
+  }
+  .ld-step {
+    text-align: left;
+  }
+  /* Vertical Multiplication Table */
+  .vert-mult-table {
+    display: inline-table;
+    border-collapse: collapse;
+    font-family: "Times New Roman", serif;
+    font-size: 13pt;
+    line-height: 1.35;
+    margin: 4px 0;
+    text-align: right;
+  }
+  .vert-mult-table td {
+    padding: 1px 4px;
+    white-space: nowrap;
+  }
+
 </style>
 </head>
 <body>
@@ -356,7 +445,7 @@
       <div class="card-body">
         <div class="unit-title">乘法公式</div>
         <div class="unit-desc">
-          分配律幾何面積模型拼貼、和的平方公式 $(a+b)^2$、差的平方公式 $(a-b)^2$、平方差公式 $(a+b)(a-b)$、大數速算與四則運算綜合題。
+          分配律幾何面積模型拼貼、和的平方公式 (a+b)<sup>2</sup>、差的平方公式 (a-b)<sup>2</sup>、平方差公式 (a+b)(a-b)、大數速算與四則運算綜合題。
         </div>
         <div class="feature-tags">
           <span class="tag">面積拼貼直觀化</span>
@@ -468,7 +557,7 @@
     
     // Update active tab
     for (let i = 0; i < units.length; i++) {
-      const tab = document.getElementById(`tab-${i}`);
+      const tab = document.getElementById(`tab-{i}`);
       if (tab) tab.classList.toggle('active', i === index);
     }
     
